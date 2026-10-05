@@ -13,7 +13,8 @@ aucune connexion requise. La page [`docs/apercu.html`](docs/apercu.html) montre 
 | `docs/` | La boutique hors ligne : 41 pages françaises + 40 arabes, chacune autonome |
 | `theme/` | `LLUFAN-theme-Shopify.zip` — le thème à importer dans Shopify |
 | `contenus/` | Les CSV d'import (produits, collections), le journal, les traductions arabes |
-| `documents/` | Liste de contrôle avant mise en ligne, pas à pas, méthode, conformité et vitesse mesurée |
+| `documents/` | Liste de contrôle avant mise en ligne, pas à pas, méthode, conformité et vitesse mesurée, comparaison avec la référence `doomoo.com` |
+| `outils/` | Les contrôles automatiques du projet, dont la commande à passer avant tout envoi (`verifier_avant_envoi.sh`) — voir `outils/LIRE-MOI.txt` |
 
 **État vérifié le 5 octobre 2026 :** import Shopify sans réserve (19 points conformes,
 0 avertissement, 0 bloquant) · accueil ≈ 1,3 s, fiche produit ≈ 2,0 s sur réseau bridé ·
@@ -28,5 +29,7 @@ du dépôt, il contient exactement les mêmes fichiers, prêts à décompresser.
 **démonstration**, à remplacer. La boutique qui vend (panier, paiement à la livraison,
 stock, e-mails) vit dans **Shopify** ; cette copie sert à regarder, montrer et partager.
 
-*Pages de preuve : `documents/LLUFAN-conformite-et-vitesse.html` (conformité et vitesse)
-et `documents/README.md` (la méthode complète, chapitre par chapitre).*
+*Pages de preuve : `documents/LLUFAN-conformite-et-vitesse.html` (conformité et vitesse),
+`documents/comparaison-doomoo-llufan.html` (la comparaison avec la référence, point par
+point : ce qui est identique, ce qui clochait, ce qui a été corrigé) et
+`documents/README.md` (la méthode complète, chapitre par chapitre).*

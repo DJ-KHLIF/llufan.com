@@ -1,6 +1,6 @@
 ▌▌▌▌▌  LLUFAN  —  LA BOUTIQUE, EN UN SEUL DOSSIER  ▌▌▌▌▌
 
-Vous avez ici quatre dossiers. Voici à quoi ils servent.
+Vous avez ici cinq dossiers. Voici à quoi ils servent.
 
   docs/        LA BOUTIQUE, ENTIÈRE, HORS LIGNE
                Double-cliquez sur docs/index.html : la boutique s'ouvre
@@ -21,7 +21,16 @@ Vous avez ici quatre dossiers. Voici à quoi ils servent.
 
   documents/   LES MODES D'EMPLOI ET LES PREUVES
                La liste de contrôle avant mise en ligne, le pas à pas,
-               la méthode complète, la conformité et la vitesse mesurée.
+               la méthode complète, la conformité et la vitesse mesurée,
+               et la comparaison avec la référence doomoo.com
+               (documents/comparaison-doomoo-llufan.html : ce qui est
+               identique, ce qui clochait, ce qui a été corrigé).
+
+  outils/      LES CONTRÔLES AUTOMATIQUES
+               Le dossier de vérification du projet, dont la commande à
+               passer avant tout envoi (verifier_avant_envoi.sh). Ils
+               s'utilisent dans le dossier de travail complet du projet,
+               pas dans ce paquet : voir outils/LIRE-MOI.txt.
 
 ────────────────────────────────────────────────────────────────────────
 1. REGARDER LA BOUTIQUE MAINTENANT        (aucune installation)

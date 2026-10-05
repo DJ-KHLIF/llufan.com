@@ -1,0 +1,76 @@
+LES CONTRÔLES LLUFAN — à quoi ils servent
+===========================================================================
+
+Ce dossier rassemble les outils de vérification écrits pendant la fabrication
+de la boutique. Ils ne servent pas à vendre : ils servent à ÉVITER DE PUBLIER
+UNE VERSION DÉPASSÉE OU INCOHÉRENTE.
+
+Où ils s'utilisent
+---------------------------------------------------------------------------
+Dans le dossier de travail complet du projet — celui qui contient, côte à côte :
+
+    llufan/theme/          le thème décompressé (104 fichiers)
+    llufan/preview/        les 81 pages de l'aperçu
+    llufan/demo/           les contenus (français et arabe)
+    llufan/LLUFAN-DEMO-produits.csv
+    llufan/LLUFAN-theme-Shopify.zip
+    llufan/etat-theme.json le journal des états du thème
+
+Dans ce paquet-ci, les mêmes fichiers existent mais rangés autrement (le thème
+est dans l'archive, les pages dans docs/). Les outils y sont donc conservés
+pour la mémoire du projet : pour les faire tourner, il faut le dossier de
+travail complet.
+
+LE CONTRÔLE À PASSER AVANT TOUT ENVOI — une seule commande
+---------------------------------------------------------------------------
+    bash verifier_avant_envoi.sh
+
+Elle fait quatre choses et conclut par « tout est prêt : on peut envoyer » ou
+« NE PAS ENVOYER » :
+
+    1. le dossier du thème face à l'archive — et si le dossier a reculé, elle
+       le RESTAURE toute seule depuis l'archive (l'archive est l'état livré) ;
+    2. les règles que Shopify applique à l'import ;
+    3. le français contre l'arabe ;
+    4. la conformité du thème (19 points).
+
+Pourquoi cette commande existe : le 5 octobre 2026, le dossier du thème a
+reculé DEUX FOIS à un état ancien (remise en place de l'espace de travail),
+alors que l'archive restait bonne. Un envoi fait sans s'en apercevoir publie
+une version dépassée. C'est arrivé une fois — plus depuis.
+
+LES OUTILS, UN PAR UN
+---------------------------------------------------------------------------
+  verifier_avant_envoi.sh ............ le contrôle complet avant envoi
+  audit_contenu_fr_ar.py ............ la version arabe répond-elle exactement à
+                                      la version française ? (collections des
+                                      produits, structure des 40 paires de
+                                      pages, réglages communs)
+  verifier_theme_zip.py ............. le dossier du thème face à l'archive
+                                      (--restaurer, --forcer, --enregistrer,
+                                       --journal)
+  audit_erreurs_shopify.py .......... les quatre règles que Shopify refuse :
+                                      filtres dans une balise, noms de plus de
+                                      25 caractères, nombres à plusieurs
+                                      décimales, adresses invalides
+  corriger_validation_shopify.py .... applique ces quatre corrections
+                                      (relançable, ne casse rien)
+  audit_conformite_shopify.py ....... les 19 points de conformité du thème
+  etat-theme.json ................... le journal des états : une empreinte par
+                                      fichier, écrit à chaque reconstruction de
+                                      l'archive. C'est lui qui permet de dire si
+                                      le dossier a reculé ou si l'archive a
+                                      pris du retard.
+
+  Autres outils du projet, non copiés ici car ils dépendent du navigateur :
+  verifier_arabe.py, verifier_rtl.py, verifier_pages.py, verifier_mobile.py.
+
+LES CONTRÔLES PASSÉS LE 5 OCTOBRE 2026 (dernier état connu)
+---------------------------------------------------------------------------
+    4 règles Shopify ............................ tout vert
+    82 pages × 3 largeurs = 246 contrôles ........ aucun problème
+    41 pages × 2 largeurs = 82 contrôles RTL ..... 0 page fautive
+    arabe (sens, polices, miroir, formulaire) .... 0 problème
+    81 pages × 9 largeurs = 729 contrôles mobile . 0 défaut
+    structure FR ↔ AR, 40 paires de pages ........ 0 écart
+    conformité du thème .......................... 19 ✓ / 0 avertissement / 0 bloquant

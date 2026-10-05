@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>doomoo.com ↔ LLUFAN — ce qui cloche</title>
+<style>
+  :root{ --navy:31 52 98; --coral:#EB735B; --bar:#F19B84; --ink:#1C1C1C; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; padding:2.5rem 1.25rem 4rem; background:#fff; color:rgb(var(--navy));
+        font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; font-size:15px; line-height:1.65; }
+  .wrap{ max-width:62rem; margin-inline:auto; }
+  h1{ font-size:1.75rem; line-height:1.2; margin:0 0 .35rem; text-transform:uppercase; letter-spacing:.02em; }
+  .sous{ margin:0 0 2.25rem; font-size:.8125rem; text-transform:uppercase; letter-spacing:.14em; color:rgb(var(--navy) / .55); }
+  h2{ font-size:1.0625rem; margin:2.5rem 0 .85rem; text-transform:uppercase; letter-spacing:.08em;
+      display:flex; align-items:center; gap:.6rem; }
+  h2 span{ display:inline-flex; width:1.6rem; height:1.6rem; border-radius:50%; background:rgb(var(--navy));
+           color:#fff; font-size:.75rem; align-items:center; justify-content:center; }
+  h2.rouge span{ background:var(--coral); }
+  h2.vert  span{ background:#2E7D5B; }
+  p{ margin:0 0 .9rem; }
+  ul{ margin:0 0 1rem; padding-left:1.15rem; }
+  li{ margin:0 0 .55rem; }
+  .carte{ border:1px solid rgb(var(--navy) / .16); border-radius:.6rem; padding:1.1rem 1.25rem; margin:0 0 1rem; background:rgb(var(--navy) / .015); }
+  .carte.normal{ border-left:4px solid #2E7D5B; }
+  .carte.ecart{ border-left:4px solid var(--coral); background:rgb(235 115 91 / .05); }
+  .carte b{ display:block; margin-bottom:.2rem; }
+  code{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.8125rem;
+        background:rgb(var(--navy) / .07); padding:.1rem .35rem; border-radius:.25rem; }
+  table{ width:100%; border-collapse:collapse; margin:0 0 1rem; font-size:.875rem; }
+  th,td{ text-align:left; padding:.55rem .7rem; border-bottom:1px solid rgb(var(--navy) / .12); vertical-align:top; }
+  th{ font-size:.6875rem; text-transform:uppercase; letter-spacing:.08em; background:rgb(var(--navy) / .05); }
+  td.ok{ color:#2E7D5B; font-weight:700; white-space:nowrap; }
+  td.ko{ color:#C0392B; font-weight:700; white-space:nowrap; }
+  td.mi{ color:#B06A00; font-weight:700; white-space:nowrap; }
+  .fin{ margin-top:2.5rem; padding:1.1rem 1.25rem; border-radius:.6rem; background:rgb(var(--navy)); color:#fff; }
+  .fin b{ color:#fff; }
+  .note{ font-size:.8125rem; color:rgb(var(--navy) / .62); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>doomoo.com ↔ LLUFAN — ce qui cloche</h1>
+  <p class="sous">Comparaison menée le 5 octobre 2026 · valeurs lues dans la feuille de style et le code servi de la référence, puis dans les nôtres</p>
+
+  <h2 class="vert"><span>1</span> Normal — ce n'est pas une panne</h2>
+
+  <div class="carte normal">
+    <b>L'éditeur ouvre sur « Page 404 »</b>
+    C'est le modèle que Shopify ouvre par défaut sur un thème qui vient d'être importé (« Page introuvable » + bouton « Ajouter une section » + section « Tiroir panier »). Aucun lien avec les 19 fichiers corrigés. Utilisez le sélecteur en haut de l'éditeur pour passer à « Accueil ».
+  </div>
+
+  <div class="carte normal">
+    <b>« Rien ne se charge »</b>
+    La boutique ne contient encore <em>aucun</em> produit, collection, page ni menu. Nos sections appellent <code>maternite</code>, <code>allaitement</code>, <code>bebe</code>, <code>nouveautes</code> : sans ces collections, les cartes restent des coquilles vides. Aucun thème au monde ne peut remplir un catalogue qui n'existe pas — c'est le contenu, votre partie, dans Shopify.
+    <br><span class="note">Bonne nouvelle : <code>mode_demo</code> étant encore activé, la vitrine affiche en attendant les visuels de démonstration du thème (diaporama <code>demo-hero-1/2</code>, tuiles <code>demo-univers-1…4</code>) — la page ne sera pas blanche.</span>
+  </div>
+
+  <div class="carte normal">
+    <b>Dans l'éditeur, un lien apparaît bleu / violet</b>
+    L'aperçu de l'éditeur ne charge qu'une partie de la feuille de style. Il faut juger sur la prévisualisation d'une vraie page, pas dans l'éditeur.
+  </div>
+
+  <h2 class="rouge"><span>2</span> Ce qui cloche vraiment — mesuré, pas supposé</h2>
+
+  <div class="carte ecart">
+    <b>1. <code>mode_demo</code> est encore activé</b>
+    Tant qu'il est à <code>true</code>, la vitrine montre les photos et les textes de démonstration (« Avis de démonstration : … », « Texte de démonstration à remplacer… »). À couper dans les réglages du thème au moment où vos contenus seront en place.
+  </div>
+
+  <div class="carte ecart">
+    <b>2. Le rythme vertical ne grandit pas sur ordinateur</b>
+    Référence : <code>--section-vertical-spacing-tight: 2.5rem</code> puis <strong>4rem dès 1000&nbsp;px</strong> de large. Nous : 2.5rem à toutes les largeurs (<code>.section-spacing{ padding-block: var(--section-vertical-spacing) }</code>). Résultat : nos sections sont plus serrées de 24&nbsp;px en haut et en bas sur grand écran — c'est le premier ingrédient de l'« air » de doomoo qui manque.
+  </div>
+
+  <div class="carte ecart">
+    <b>3. La gouttière des côtés reste à 20&nbsp;px</b>
+    Référence : <code>--container-gutter</code> = 1.25rem → <strong>2rem dès 700&nbsp;px</strong> → <strong>3rem dès 1000&nbsp;px</strong>. Nous : 1.25rem partout (et 0.9375rem sous 560&nbsp;px). Sur un écran de 1200&nbsp;px, nos textes sont à 20&nbsp;px du bord là où la référence laisse 48&nbsp;px. Deuxième ingrédient de l'air manquant.
+  </div>
+
+  <div class="carte ecart">
+    <b>4. Le diaporama : hauteur figée et image manquante</b>
+    Référence : la hauteur suit l'image (classe <code>content-over-media--auto</code>, ratio écrit <strong>4/3</strong>) et il existe <strong>une image mobile dédiée</strong> (<code>&lt;source media="(max-width:699px)"&gt;</code>). Nous : hauteur fixe <strong>78vh</strong> (62vh sur mobile), une seule image par diapositive — et surtout les deux réglages <code>image</code> sont <strong>vides</strong> (on retombe sur les visuels de démo <code>1200×896</code>, même ratio 4/3 que la référence : c'est le bon gabarit).
+  </div>
+
+  <div class="carte ecart">
+    <b>5. La bande vidéo de l'accueil n'a aucune source</b>
+    Référence : une vraie vidéo. Nous : <code>video_url: ""</code> et aucune vidéo téléversée → le thème <strong>masque la section</strong> en vitrine (elle n'existe qu'en mode éditeur, avec un carton noir). Notre accueil compte donc une section de moins que la référence, entre le carrousel produits et les avis. À vous de voir : fournir une vidéo 16/9 (elle remplit la bande bord à bord ; celle de la référence est verticale et laisse des bandes noires) ou laisser la bande masquée.
+  </div>
+
+  <h2 class="vert"><span>3</span> Ce qui est identique — vérifié valeur par valeur</h2>
+
+  <table>
+    <thead><tr><th>Élément</th><th>doomoo.com (lu dans son code)</th><th>LLUFAN</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Largeur de conteneur</td><td>85rem = 1360px</td><td>85rem = 1360px</td><td class="ok">✔</td></tr>
+      <tr><td>Taille de texte de base</td><td>0.875rem</td><td>0.875rem</td><td class="ok">✔</td></tr>
+      <tr><td>Titres h1 / h2 / h3</td><td>clamp 1.375→2rem / 1.25→1.75 / 1.125→1.375</td><td>formules identiques au caractère près</td><td class="ok">✔</td></tr>
+      <tr><td>Titres en majuscules</td><td>oui, interlettrage 0em</td><td>oui, 0em</td><td class="ok">✔</td></tr>
+      <tr><td>Boutons</td><td>rayon 2.5rem</td><td>rayon 2.5rem</td><td class="ok">✔</td></tr>
+      <tr><td>Palette</td><td>navy 31 52 98 · corail #EB735B · barre #F19B84 · noir #1C1C1C</td><td>strictement les mêmes valeurs</td><td class="ok">✔</td></tr>
+      <tr><td>Bande vidéo</td><td>hauteur clamp(25rem, 100vw, 36rem), média 16/9 centré</td><td>identique</td><td class="ok">✔</td></tr>
+      <tr><td>Texte du diaporama</td><td>en bas à gauche (<code>place-self-end-start</code>)</td><td>en bas à gauche</td><td class="ok">✔</td></tr>
+      <tr><td>Ordre des sections</td><td>diaporama → réassurance → grille → collections → vidéo → avis → éditorial → bande d'icônes → pied</td><td>diaporama → icônes → univers → sélection → (vidéo masquée) → avis → éditorial → icônes → pied</td><td class="mi">≈</td></tr>
+      <tr><td>Logo</td><td>image du thème</td><td>réglage vide → logo LLUFAN intégré (navy) s'affiche</td><td class="ok">✔</td></tr>
+      <tr><td>Gouttière des côtés</td><td>1.25 / 2 / 3rem selon la largeur</td><td>1.25rem partout</td><td class="ko">✗</td></tr>
+      <tr><td>Espacement vertical</td><td>2.5rem → 4rem dès 1000px</td><td>2.5rem partout</td><td class="ko">✗</td></tr>
+      <tr><td>Hauteur du diaporama</td><td>suit l'image (ratio 4/3)</td><td>78vh fixe (62vh mobile)</td><td class="mi">≈</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Une seule différence de structure, assumée :</strong> la référence consacre <em>deux</em> sections à la zone « collections » (la grille d'images « Votre moment, votre univers ♡ » puis les collections « Nos Coussins de maternité »). Nous les avons fusionnées en une section « Nos univers » (4 cartes) suivie d'un carrousel produits — même fonction, un bloc de moins.</p>
+
+  <h2 class="vert"><span>4</span> Corrigé le 5 octobre au soir — et mesuré</h2>
+  <p>Les deux défauts d'« air » sont réparés dans la feuille de style, avec la précaution qui s'imposait : <code>box-sizing: border-box</code> étant global, ajouter de la marge en <em>padding</em> aurait rétréci le contenu. La largeur maximale compte donc désormais la gouttière (<code>calc(85rem + 2 × gouttière)</code>), si bien que le contenu reste à 1360&nbsp;px pile, comme la référence.</p>
+
+  <table>
+    <thead><tr><th>Largeur d'écran</th><th>Marge de page — avant → après</th><th>Rythme vertical — avant → après</th><th>Contenu</th><th>Référence</th></tr></thead>
+    <tbody>
+      <tr><td>390 px</td><td>15 → 15 px</td><td>40 → 40 px</td><td>360 px</td><td class="ok">✔ inchangé (mobile voulu)</td></tr>
+      <tr><td>768 px</td><td>20 → <strong>32 px</strong></td><td>40 → 40 px</td><td>704 px</td><td class="ok">✔ identique</td></tr>
+      <tr><td>1024 px</td><td>20 → <strong>48 px</strong></td><td>40 → <strong>64 px</strong></td><td>928 px</td><td class="ok">✔ identique</td></tr>
+      <tr><td>1440 px</td><td>20 → <strong>48 px</strong></td><td>40 → <strong>64 px</strong></td><td>1344 px</td><td class="ok">✔ identique</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Valeurs relevées dans le navigateur (styles calculés), sur la page d'accueil française <em>et</em> sa jumelle arabe : strictement les mêmes.</p>
+
+  <h2 class="rouge"><span>5</span> Vérification AR / FR — cinq vrais défauts trouvés, et corrigés</h2>
+  <p>Les contrôles automatiques (arabe, miroir, mobile, chargement) étaient déjà tous verts. En comparant les deux langues <strong>page contre page, section contre section</strong>, cinq écarts réels sont apparus — invisibles pour un contrôle de bon fonctionnement, bien visibles à l'œil.</p>
+
+  <table>
+    <thead><tr><th>#</th><th>Ce qui clochait en arabe</th><th>Effet</th><th>Corrigé</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Accueil : la section « Nos univers » avait perdu son enveloppe (titre + grille)</td>
+        <td>les 4 cartes s'affichaient en pleine largeur l'une sous l'autre — <strong>11 665 px de page au lieu de 5 125</strong></td>
+        <td class="ok">✔</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Accueil : la bande du haut montrait les <em>liens du menu</em> (Club, La marque, Pièces détachées, Aide) au lieu des trois promesses</td>
+        <td>mauvais message à l'endroit le plus vu</td>
+        <td class="ok">✔</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Accueil : carrousel produits affiché en grille de deux rangées, témoignages empilés, étoiles en caractères, fond de couleur différent</td>
+        <td>section 1 162 px au lieu de 723, et un fond qui ne correspondait pas</td>
+        <td class="ok">✔</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Fiches produit : le bandeau éditorial « Des produits pensés pour le quotidien » manquait</td>
+        <td>4 sections au lieu de 5, sur les 10 fiches</td>
+        <td class="ok">✔</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Rattachement des produits aux collections : 3 produits différaient entre les deux langues (poncho, robe, sac à langer) — et 2 divergeaient aussi du fichier CSV destiné à Shopify</td>
+        <td>un produit visible dans « Maternité » en arabe et pas en français</td>
+        <td class="ok">✔</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">Deux réglages mineurs ont suivi : la première image d'accueil passe de 72 à 78 vh en arabe (la valeur du thème), et la bande d'icônes reprend exactement l'habillage français.</p>
+
+  <p><strong>Après correction, page contre page :</strong> zéro écart de structure sur les 40 paires (mêmes sections, mêmes grilles, mêmes bandeaux). Hauteurs comparées sur dix pages types : accueil 5 125 / 5 099 px (−0,5 %), collections à ±1 px, panier −22 px, contact −22 px, faq −22 px — les écarts restants viennent de la longueur des textes, pas de la mise en page.</p>
+
+  <h2 class="vert"><span>6</span> Contrôles repassés après correction</h2>
+  <table>
+    <thead><tr><th>Contrôle</th><th>Étendue</th><th>Résultat</th></tr></thead>
+    <tbody>
+      <tr><td>Pages qui se chargent sans erreur, aux 3 largeurs</td><td>82 pages × 3 = 246 contrôles</td><td class="ok">✔ aucun problème</td></tr>
+      <tr><td>Sens droite → gauche : mise en page, miroir, débordements</td><td>41 pages × 2 = 82 contrôles</td><td class="ok">✔ 0 page fautive</td></tr>
+      <tr><td>Arabe : <code>dir="rtl"</code>, <code>lang="ar"</code>, polices arabes appliquées, en-tête en miroir, formulaire de commande (ville → commune → frais)</td><td>40 pages arabes</td><td class="ok">✔ 0 problème</td></tr>
+      <tr><td>Mobile de 320 à 480 px : rien ne dépasse, rien n'est tronqué</td><td>81 pages × 9 = 729 contrôles</td><td class="ok">✔ 0 défaut</td></tr>
+      <tr><td>Structure FR ↔ AR (sections, grilles, carrousels, bandeaux)</td><td>40 paires de pages</td><td class="ok">✔ 0 écart</td></tr>
+      <tr><td>Règles de validation Shopify (filtres, noms, décimales, adresses)</td><td>104 fichiers</td><td class="ok">✔ tout vert</td></tr>
+      <tr><td>Cohérence dossier ↔ archive du thème</td><td>104 fichiers</td><td class="ok">✔ identiques</td></tr>
+      <tr><td>Conformité complète du thème</td><td>19 points</td><td class="ok">✔ 19 ✓ / 0 / 0</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Archives refaites après correction : thème <strong>2 056 566 o</strong>, paquet <strong>44 590 136 o</strong> (83 pages, dont les 40 jumelles arabes).</p>
+
+  <div class="fin">
+    <b>En une phrase :</b> le thème est fidèle sur tout ce qui se mesure — palette, typographie, tailles de texte, ratio de la bande vidéo, ordre des sections, position du texte du diaporama. Les deux réglages d'« air » manquants sont <strong>corrigés et mesurés conformes</strong> à la référence. La comparaison arabe / français a révélé <strong>cinq vrais défauts, tous corrigés</strong> : la page arabe et la page française se superposent désormais section par section. Restent deux <strong>décisions de contenu</strong>, les vôtres : les images du diaporama et la vidéo de l'accueil.
+  </div>
+
+</div>
+</body>
+</html>
