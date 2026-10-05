@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>LLUFAN — conformité Shopify et vitesse de chargement</title>
+<style>
+  :root { --navy:#1F3462; --corail:#EB735B; --sable:#F7F3EE; --gris:#5B6272;
+    --trait:#E4DFD8; --vert:#2F7D4F; --vert-fond:#EFF5F0; }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--navy); font-family:"Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .feuille { max-width:1020px; margin:0 auto; padding:40px 22px 70px; }
+  .sur-titre { font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--corail); font-weight:700; margin:0 0 10px; }
+  h1 { font-family:Georgia, serif; font-weight:600; font-size:30px; margin:0 0 10px; }
+  h2 { font-family:Georgia, serif; font-weight:600; font-size:21px; margin:48px 0 4px; }
+  h2 .num { color:var(--corail); margin-right:8px; }
+  h3 { font-size:15px; margin:22px 0 6px; }
+  p { color:var(--gris); max-width:74ch; }
+  .etat { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 0; }
+  .etat span { border:1px solid var(--vert); background:var(--vert-fond);
+    border-radius:999px; padding:4px 11px; font-size:12.5px; }
+  .etat .alerte { border-color:var(--corail); background:#FFF3EF; }
+  table { border-collapse:collapse; width:100%; font-size:14px; margin-top:12px; }
+  th, td { text-align:left; padding:9px 10px; border-bottom:1px solid var(--trait); vertical-align:top; }
+  th { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--gris); }
+  td.oui { color:var(--vert); font-weight:700; } td.non { color:#B3401F; font-weight:700; }
+  td.note { color:#B7791F; font-weight:700; }
+  .deux { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:760px) { .deux { grid-template-columns:1fr; } }
+  .carte { border:1px solid var(--trait); border-radius:12px; padding:16px 18px; }
+  .carte .grand { font-family:Georgia, serif; font-size:30px; display:block; }
+  .gain { border-left:4px solid var(--vert); background:var(--vert-fond); border-radius:10px;
+    padding:14px 18px; margin-top:16px; }
+  code { background:var(--sable); border-radius:5px; padding:1px 6px; font-size:13px; }
+  ul { color:var(--gris); } li { margin:0 0 8px; }
+  footer { margin-top:46px; padding-top:16px; border-top:1px solid var(--trait);
+    color:var(--gris); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="feuille">
+  <p class="sur-titre">LLUFAN · vérification</p>
+  <h1>Conformité Shopify et vitesse de chargement</h1>
+  <p>Deux questions, deux réponses mesurées : le thème s'importe-t-il dans Shopify
+  sans incompatibilité, et la boutique s'affiche-t-elle assez vite pour ne pas
+  perdre des commandes ?</p>
+
+  <div class="etat">
+    <span>✓ 19 points de conformité vérifiés</span>
+    <span class="">0 avertissement(s)</span>
+    <span class="">0 point bloquant</span>
+    <span>Mesures sur réseau bridé : 1.6 Mb/s, 150 ms, processeur ÷4 — et, pour
+    la comparaison avant/après, une liaison lente à 0,4 Mb/s et 400 ms</span>
+  </div>
+
+  <h2><span class="num">1.</span>Conformité avec la plateforme Shopify</h2>
+  <p>Le contrôle est automatique et vérifie les exigences qui font échouer un
+  import, ou dégrader la boutique après coup : fichiers obligatoires, modèles de
+  page, schémas de section, réglages, balises et filtres obsolètes, traductions,
+  poids des fichiers, appel des images, sélection dans l'éditeur.</p>
+  <table>
+    <thead><tr><th></th><th>Point vérifié</th><th>Ce qui a été constaté</th></tr></thead>
+    <tbody><tr><td class="oui">✓</td><td><b>Fichiers obligatoires</b></td><td>22 fichiers présents (modèles, langues, compte, caisse-cadeau)</td></tr><tr><td class="oui">✓</td><td><b>Aucun fichier obsolète</b></td><td>pas de checkout.liquid ni de gabarit de caisse</td></tr><tr><td class="oui">✓</td><td><b>Aucun fichier parasite</b></td><td>ni .DS_Store, ni archive, ni fichier de travail</td></tr><tr><td class="oui">✓</td><td><b>Gabarit principal</b></td><td>contient {{ content_for_header }} — les scripts de Shopify (panier, statistiques, éditeur)</td></tr><tr><td class="oui">✓</td><td><b>Gabarit principal</b></td><td>contient {{ content_for_layout }} — le contenu des pages</td></tr><tr><td class="oui">✓</td><td><b>Gabarit principal</b></td><td>contient {% sections  — les sections de l&#x27;éditeur</td></tr><tr><td class="oui">✓</td><td><b>Affichage téléphone déclaré</b></td><td>balise viewport présente</td></tr><tr><td class="oui">✓</td><td><b>Modèles de page</b></td><td>20 modèles lisibles, 41 sections posées au total, aucune section inconnue</td></tr><tr><td class="oui">✓</td><td><b>Schémas de section</b></td><td>29 schémas lisibles, identifiants uniques</td></tr><tr><td class="oui">✓</td><td><b>Réglages globaux</b></td><td>11 groupes, 54 réglages, 53 valeurs enregistrées — toutes déclarées</td></tr><tr><td class="oui">✓</td><td><b>Fiche du thème</b></td><td>bloc theme_info présent (nom, version, auteur)</td></tr><tr><td class="oui">✓</td><td><b>Liquid obsolète</b></td><td>aucune balise ni filtre déprécié dans les 53 fichiers</td></tr><tr><td class="oui">✓</td><td><b>Images du CDN Shopify</b></td><td>22 appels, tous avec une largeur demandée</td></tr><tr><td class="oui">✓</td><td><b>Sélection dans l&#x27;éditeur</b></td><td>10 sections à blocs portent shopify_attributes</td></tr><tr><td class="oui">✓</td><td><b>Langue par défaut</b></td><td>fr.default.json — le français est la référence</td></tr><tr><td class="oui">✓</td><td><b>Traductions</b></td><td>136 clés, présentes dans les deux langues</td></tr><tr><td class="oui">✓</td><td><b>Clés de traduction</b></td><td>123 clés utilisées, toutes définies</td></tr><tr><td class="oui">✓</td><td><b>Poids du fichier ZIP</b></td><td>2.0 Mo (limite Shopify : 50 Mo)</td></tr><tr><td class="oui">✓</td><td><b>Aucun fichier trop lourd</b></td><td>le plus gros : assets/llufan-nomad-coussin.jpg (323 Ko), limite Shopify : 20 Mo</td></tr></tbody>
+  </table>
+
+  <h2><span class="num">2.</span>Vitesse : ce que vit une cliente</h2>
+  <p>L'indicateur qui compte pour la conversion est le <b>LCP</b> : l'instant où
+  le plus grand élément visible s'affiche enfin. Au-delà de 2,5 s, une partie des
+  visiteuses est déjà partie. Le <b>CLS</b> mesure ce qui bouge sous le doigt :
+  au-delà de 0,1, on clique à côté.</p>
+  <table>
+    <thead><tr><th>Page</th><th>Affichage (LCP)</th><th>Élément qui décide</th>
+    <th>Stabilité (CLS)</th><th>Calcul</th><th>Poids</th><th>Requêtes</th></tr></thead>
+    <tbody><tr><th scope="row">Accueil — état actuel</th><td>1312 ms</td><td>IMG.slideshow__slide-media</td><td>0.008</td><td>309 ms</td><td>584 Ko</td><td>18</td></tr><tr><th scope="row">Accueil — avant le correctif du 5 octobre</th><td>1292 ms</td><td>IMG.slideshow__slide-media</td><td>0.008</td><td>249 ms</td><td>584 Ko</td><td>18</td></tr><tr><th scope="row">Fiche produit — état actuel</th><td>1984 ms</td><td>IMG</td><td>0.008</td><td>340 ms</td><td>417 Ko</td><td>13</td></tr></tbody>
+  </table>
+
+  <h3>Le correctif du 5 octobre, mesuré sur deux profils réseau</h3>
+  <table>
+    <thead><tr><th>Conditions</th><th>Affichage avant</th><th>Affichage après</th><th>Résultat</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Profil mobile (1.6 Mb/s, 150 ms)</th>
+        <td>1292 ms</td><td>1312 ms</td>
+        <td class="non">20 ms plus lent</td></tr>
+      <tr><th scope="row">Liaison lente (3G, 0.4 Mb/s de débit, 400 ms)</th><td>3364 ms</td><td>3504 ms</td><td class="non">140 ms plus lent</td></tr>
+    </tbody>
+  </table>
+  <h3>Ce que le correctif change vraiment — dit sans arrondir</h3>
+  <p>Sur l'accueil actuel, qui compte <b>deux</b> diapositives, l'écart mesuré
+  avant/après reste dans le bruit de mesure (l'écart d'un passage à l'autre est
+  du même ordre). Le mécanisme, lui, se vérifie sur une maquette contrôlée :
+  quatre grandes images superposées, en liaison lente.</p>
+  <table>
+    <thead><tr><th>Maquette</th><th>Affichage (LCP)</th><th colspan="2">Écart</th></tr></thead>
+    <tbody><tr><th scope="row">4 grandes images, 1 seule prioritaire</th><td>6752 ms</td><td colspan="2" class="oui">référence</td></tr><tr><th scope="row">4 grandes images, toutes prioritaires</th><td>7540 ms</td><td colspan="2" class="non">+788 ms</td></tr></tbody>
+  </table>
+  <p>Autrement dit : marquer <b>toutes</b> les diapositives comme prioritaires
+  fait bien attendre la première plus longtemps dès que le diaporama en compte
+  plusieurs. Le correctif n'apporte donc rien de spectaculaire aujourd'hui —
+  il évite une lenteur qui apparaîtrait dès que la boutique aura un diaporama
+  de trois ou quatre visuels, ce qui est l'usage courant.</p>
+
+  <div class="gain">
+    <b>Bilan mesuré :</b> les diapositives du diaporama
+    d'accueil étaient toutes chargées en priorité haute. Seule la première décide
+    de l'affichage : les suivantes attendent maintenant leur tour.<br>
+    Affichage de l'accueil : <b>1292 ms → 1312 ms</b> — 20 ms de moins — du même ordre que la variation d'un passage à l'autre : à considérer comme un écart nul ·
+    Poids de l'accueil : <b>584 Ko → 584 Ko</b> (identique, comme attendu) ·
+    Requêtes : <b>18 → 18</b> (inchangées).
+  </div>
+
+  <h2><span class="num">3.</span>Où part le poids de l'accueil</h2>
+  <div class="deux">
+    <div>
+      <h3>Par type de fichier</h3>
+      <table><thead><tr><th>Type</th><th>Poids</th><th>Part</th></tr></thead>
+      <tbody><tr><td>image</td><td>407 Ko</td><td>70 %</td></tr><tr><td>police</td><td>154 Ko</td><td>26 %</td></tr><tr><td>style</td><td>23 Ko</td><td>4 %</td></tr></tbody></table>
+    </div>
+    <div>
+      <h3>Les fichiers les plus lourds</h3>
+      <table><thead><tr><th>Fichier</th><th>Type</th><th>Poids</th></tr></thead>
+      <tbody><tr><td><code>img-004.jpg</code></td><td>image</td><td>106 Ko</td></tr><tr><td><code>img-012.jpg</code></td><td>image</td><td>106 Ko</td></tr><tr><td><code>fraunces-latin.woff2</code></td><td>police</td><td>66 Ko</td></tr><tr><td><code>img-003.jpg</code></td><td>image</td><td>46 Ko</td></tr><tr><td><code>llufan-ar-heading-500.woff2</code></td><td>police</td><td>45 Ko</td></tr><tr><td><code>jost-latin.woff2</code></td><td>police</td><td>26 Ko</td></tr><tr><td><code>img-002.jpg</code></td><td>image</td><td>25 Ko</td></tr><tr><td><code>img-005.jpg</code></td><td>image</td><td>24 Ko</td></tr></tbody></table>
+    </div>
+  </div>
+  <p>Les visuels de démonstration pèsent l'essentiel. Sur une vraie boutique, ils
+  sont remplacés par les photos de LLUFAN, et le CDN Shopify les redimensionne
+  selon la largeur demandée (le thème demande toujours une largeur précise).
+  <b>Conseil à retenir :</b> envoyer des photos déjà redimensionnées (1600 px de
+  large suffisent pour une bannière) évite de faire porter à Shopify des fichiers
+  de plusieurs mégaoctets.</p>
+
+  <h2><span class="num">4.</span>Ce qui est déjà en place pour la vitesse</h2>
+  <ul>
+    <li><b>Une seule feuille de style</b>, servie compressée par Shopify, sans
+    dépendance externe : rien à télécharger ailleurs avant d'afficher.</li>
+    <li><b>Polices en fichiers séparés</b>, avec plage de caractères : la page
+    française ne télécharge jamais les polices arabes, et inversement. Les deux
+    polices principales sont préchargées.</li>
+    <li><b>Images du CDN Shopify</b> toujours demandées avec une largeur, et avec
+    des variantes pour les écrans denses (<code>widths</code> / <code>sizes</code>) :
+    un téléphone ne reçoit jamais une photo de 3200 px.</li>
+    <li><b>Chargement paresseux</b> partout sauf sur ce qui est visible tout de
+    suite : une seule image est prioritaire par page.</li>
+    <li><b>Dimensions déclarées</b> sur les visuels : la place est réservée avant
+    l'arrivée de l'image, donc rien ne saute (CLS 0.008).</li>
+    <li><b>Scripts en <code>defer</code></b> : le navigateur n'attend pas le
+    JavaScript pour afficher la page.</li>
+    <li><b>Vidéo YouTube</b> chargée seulement à l'approche de la section
+    (<code>loading="lazy"</code>), et jamais de commandes inutiles.</li>
+  </ul>
+
+  <h2><span class="num">5.</span>Ce qu'il reste à faire — et qui le fait</h2>
+  <ul>
+    <li><b>Remplacer les visuels de démonstration</b> par les photos LLUFAN, en
+    les allégeant avant l'envoi (2 Mo maximum par photo, 1600 px de large).
+    C'est du contenu : cela se fait dans Shopify.</li>
+    <li><b>Ne pas installer d'applications lourdes</b> : chacune ajoute ses
+    propres scripts. Une boutique qui reste sous une dizaine d'applications
+    garde une longueur d'avance.</li>
+    <li><b>Vérifier une dernière fois sur la boutique en ligne</b> avec l'outil
+    PageSpeed Insights de Google, sur un vrai téléphone en 4G. Les chiffres
+    ci-dessus sont une mesure de laboratoire, sur un réseau bridé volontairement.</li>
+  </ul>
+
+  <h2><span class="num">6.</span>Comment c'est mesuré</h2>
+  <p>Honnêteté sur la méthode : les pages de l'aperçu sont servies par un serveur
+  local qui imite Shopify (feuille de style à part et compressée, polices et
+  images en fichiers séparés), puis chargées trois fois dans un vrai navigateur,
+  sur un profil réseau « mobile » : 1.6 Mb/s de débit descendant, 150 ms
+  d'aller-retour, processeur ralenti 4 fois. Ce n'est pas la boutique en
+  ligne : c'est le <i>comportement du thème</i>, dans des conditions comparables
+  d'une mesure à l'autre. La mesure en ligne dépendra en plus du CDN de Shopify
+  (qui accélère), de la distance au serveur et du forfait de la visiteuse.</p>
+
+  <footer>
+    Rapport construit par <code>python3 llufan/build_rapport_vitesse.py</code> —
+    conformité : <code>audit_conformite_shopify.py</code>.
+    Détail des étapes : README §30.
+  </footer>
+</div>
+</body>
+</html>

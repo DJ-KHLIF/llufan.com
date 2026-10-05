@@ -10,14 +10,23 @@
 
 ## 1. Les fichiers livrés
 
+*Rien de ce qui sert à construire la boutique n'est absent : le thème, les CSV
+d'import, les traductions et ce mode d'emploi sont là. Seuls l'aperçu et la
+boutique à emporter se reconstruisent à la demande — les deux commandes sont
+indiquées dans le tableau. Vérification : `python3 verifier_import_shopify.py`.*
+
 | Fichier | À quoi ça sert | Où ça se passe dans Shopify |
 |---|---|---|
 | `LLUFAN-theme-Shopify.zip` | Le thème complet, avec les contenus de démonstration déjà en place | Boutique en ligne → Thèmes → Ajouter un thème → Importer un fichier ZIP |
 | `LLUFAN-DEMO-produits.csv` | 10 produits fictifs, 28 variantes, prix en DZD | Produits → Importer |
 | `LLUFAN-DEMO-collections.csv` | 5 collections (Maternité, Allaitement, Bébé, Nouveautés, Accessoires) | Produits → Collections → Importer |
 | `demo/produits/*.jpg` | 10 visuels produits (nom de fichier = handle du produit) | à glisser sur chaque fiche produit après l'import |
-| `preview/*.html` | L'aperçu hors boutique : **38 pages** cliquables (dont journal, articles, liste des collections, compte client, page introuvable), sans installation | à ouvrir dans un navigateur |
+| `preview/*.html` | L'aperçu hors boutique : **81 pages** cliquables — les **41 pages françaises** et leurs **40 jumelles arabes** (accueil, collections, fiches produit, panier, pages d'information, FAQ, Club Maman, journal et articles, contact, recherche, compte, page introuvable). **N'est plus conservé sur le disque** (il pesait 60 Mo et se refait tout seul) | le reconstruire d'abord : `bash llufan/refaire_apercu.sh` (quelques secondes), puis ouvrir `llufan/preview/apercu.html` |
+| `LLUFAN-apercu-local.zip` | **La même chose, à emporter** : les 81 pages + page d'ensemble + `LIRE-MOI.txt`, à ouvrir sur n'importe quel ordinateur hors ligne (36 Mo). **Refait à la demande**, lui aussi | `bash llufan/refaire_archives.sh`, puis décompresser et double-cliquer sur `apercu.html` |
 | `LLUFAN-DEMO-journal-a-publier.md` | 3 articles de blog de démonstration, prêts à coller | Boutique en ligne → Blog → Ajouter un article |
+| `LLUFAN-DEMO-traductions-ar.csv` | Le texte **arabe** de tout le contenu : produits, collections, 7 pages d'information, FAQ, Club Maman, contact, journal et articles, plus les 17 textes des réglages de sections (**255 lignes**), à coller dans l'export de traduction Shopify | Paramètres → Langues → Exporter / Importer |
+| `LLUFAN-checklist-mise-en-ligne.md` | **Liste de contrôle** : les 13 étapes à cocher avant publication | à suivre dans l'ordre, au moment de mettre en ligne |
+| `locales/ar.json` (dans le thème) | Les libellés de l'interface en arabe (**121 clés** : panier, filtres, commande, recherche, compte, page introuvable) : le thème est déjà bilingue, il n'y a que la langue à publier (§7) | Paramètres → Langues |
 
 ---
 
@@ -76,6 +85,7 @@ Tant qu'une page n'existe pas, le lien correspondant **n'apparaît pas** (menu, 
 | Ce que vous voulez changer | Où |
 |---|---|
 | Bandeau d'annonces, pré-bandeau, logo, logo (mobile), pastille CLUB MAMAN, lien Compte | Éditeur → **En-tête** (et ses sections Bandeau / Pré-bandeau / En-tête) |
+| **Image de partage** (1200 × 630) — l'image montrée quand un lien LLUFAN est envoyé sur WhatsApp ou Facebook | Éditeur → **Logo et favicon** → *Image de partage*. Vide, le partage retombe sur le logo ; mieux vaut un vrai visuel |
 | Diaporama d'accueil (texte, bouton, visuel) | Éditeur → **Accueil** → section *Héros (diaporama)* |
 | Bandeau de réassurance (3 engagements) | Éditeur → **Accueil** → section *Icônes + texte* |
 | Les 4 cartes d'univers | Éditeur → **Accueil** → *Cartes de collection* (choisir une collection = le visuel et le lien suivent) |
@@ -86,6 +96,8 @@ Tant qu'une page n'existe pas, le lien correspondant **n'apparaît pas** (menu, 
 | Fiche produit : badges, sous-titre, accordéons, réassurance, éditorial, questions | Éditeur → Produits → ouvrir un produit → *Modèle de thème* → sections et blocs |
 | Formulaire de commande (titre, bouton, barre mobile) | Éditeur → modèle produit / panier → bloc ou section *Commander* |
 | Titre « Description » de la fiche produit (masquable) | Éditeur → Produits → ouvrir un produit → bloc *Description* |
+| Vidéo de l'accueil (lien YouTube / Vimeo, lecture auto sans son) | Éditeur → Accueil → section *Vidéo* — **démonstration visuelle : `preview/comment-ajouter-une-video.html`** |
+| Vidéos d'un produit (galerie) | Admin → Produits → ouvrir le produit → Médias → Ajouter (lien YouTube/Vimeo ou fichier) |
 | Club Maman (texte d'accueil, espaces, discussions, ressources, inscription) | Éditeur → Pages → *Club Maman* → section *Club Maman* |
 | Pages d'information (La marque, Livraison, Paiement, Échanges et retours, Mentions légales, CGV, Confidentialité) | Éditeur → Pages → la page → section *Page d'information* (sur-titre, titre, intro, blocs, note) + onglet **Contenu** de la page pour le texte libre |
 | Pied de page : colonnes, liens, contact, mentions, copyright | Éditeur → **Pied de page** (chaque colonne et chaque adresse se règlent dans la section *Pied de page*) |
@@ -110,6 +122,8 @@ Tant qu'une page n'existe pas, le lien correspondant **n'apparaît pas** (menu, 
 - **La vidéo de l'accueil** : aucun visuel n'a été inventé. Tant qu'aucun lien n'est saisi, la section ne s'affiche
   pas dans la boutique (elle reste visible dans l'éditeur, avec un texte d'attente). Elle réapparaîtra dès que
   vous collerez un lien YouTube / Vimeo ou déposerez un fichier : Éditeur → Accueil → *Vidéo*.
+  Le thème ajoute lui-même les paramètres de lecture de la référence (démarrage automatique, sans son, en boucle,
+  sans commandes) ; décochez « Lecture automatique » si la vidéo a une voix off. Détails : README §13.13.
 - **Le bandeau d'annonces**, le pré-bandeau et la pastille : contenus LLUFAN, mais à valider (les liens pointent vers les pages et collections, pas vers des adresses inventées).
 
 ---
@@ -137,7 +151,45 @@ Aucun réglage de texte ne dépend de ce mode : les textes de démonstration son
 
 ---
 
-## 7. Ce que la démonstration ne peut pas faire
+## 7. Passer la boutique en arabe (facultatif)
+
+Le thème est prêt : les 121 libellés de l'interface sont traduits, **chaque page
+française a sa jumelle arabe**, la mise en page se retourne d'elle-même en sens
+droite→gauche et les polices arabes sont embarquées. Il reste trois
+manipulations, toutes dans Shopify :
+
+1. **Publier la langue** — Paramètres → *Langues* → *Ajouter une langue* →
+   **العربية** → **Publier**. Shopify crée alors l'adresse `llufan.com/ar`.
+2. **Traduire les contenus** — le texte arabe de **tout le contenu** est déjà écrit :
+   `LLUFAN-DEMO-traductions-ar.csv` (255 lignes : produits, collections, 7 pages
+   d'information, FAQ, Club Maman, contact, journal et 3 articles, plus les 17 textes
+   saisis dans les réglages de sections). Exporter les traductions depuis Shopify,
+   coller la colonne « العربية » dans « Translated content », réimporter (README §16.2
+   et §19.5). Pour compléter ou corriger : Applications → *Traduire et adapter* —
+   contenus, politiques, menus, **et « Contenu du thème »** pour les textes de sections
+   (ils se repèrent au type `ONLINE_STORE_THEME`). Tant qu'un contenu n'est pas
+   traduit, la version arabe l'affiche en français.
+3. **Régler le choix automatique** — Éditeur → Réglages du thème → *Sélecteurs et
+   mentions légales* → « Choisir la langue d'après celle du navigateur ». Coché
+   (par défaut), une visiteuse dont le téléphone est en arabe arrive directement
+   sur la version arabe — une seule redirection par visite, jamais pour les
+   robots des moteurs de recherche, et jamais contre un choix fait à la main dans
+   le sélecteur. Décoché, seule la cliente décide.
+
+Ce qui **ne change pas** avec la langue : les **noms de champs** enregistrés dans
+la commande que vous recevez (`contact[Téléphone]`, objet « Commande — paiement à
+la livraison ») — c'est une information d'administration, invisible pour la
+cliente —, et les modèles d'e-mails de Shopify. **En revanche, les wilayas et
+communes s'affichent bien en arabe** (`أدرار` et non `Adrar`, `إلى المنزل` et non
+« À domicile ») : c'est le nom affiché qui change, la valeur enregistrée dans la
+commande reste la même, et votre fichier de tarifs n'a pas bougé. 1 534 communes
+sur 1 541 ont leur nom arabe ; les 7 autres s'affichent en lettres latines,
+faute de nom officiel disponible (liste dans README §26.4) — mieux vaut cela
+qu'un nom approximatif. Le §19 du README détaille tout cela.
+
+---
+
+## 8. Ce que la démonstration ne peut pas faire
 
 - **Passer une vraie commande depuis l'aperçu HTML** : l'aperçu est statique (le formulaire de commande y est montré à titre de vérification). Dans la boutique Shopify, ce même formulaire envoie réellement la commande (message de contact Shopify + récapitulatif WhatsApp).
 - **Créer un compte client depuis l'aperçu** : le lien « Compte » dépend des comptes clients activés dans Shopify.

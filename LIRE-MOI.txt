@@ -1,0 +1,106 @@
+▌▌▌▌▌  LLUFAN  —  LA BOUTIQUE, EN UN SEUL DOSSIER  ▌▌▌▌▌
+
+Vous avez ici quatre dossiers. Voici à quoi ils servent.
+
+  docs/        LA BOUTIQUE, ENTIÈRE, HORS LIGNE
+               Double-cliquez sur docs/index.html : la boutique s'ouvre
+               dans votre navigateur, sans connexion et sans serveur.
+               81 pages, chacune autonome — dont les 40 pages arabes
+               (docs/ar-accueil.html pour commencer).
+               docs/apercu.html montre les 81 pages d'un coup d'œil.
+
+  theme/       LE THÈME À INSTALLER DANS SHOPIFY
+               theme/LLUFAN-theme-Shopify.zip
+               Boutique en ligne → Thèmes → Ajouter un thème → Importer
+               un fichier ZIP. Le thème s'ajoute sans erreur (contrôle
+               d'import passé : 19 points, 0 bloquant).
+
+  contenus/    LES CONTENUS À IMPORTER (ils sont de DÉMONSTRATION)
+               10 produits, 5 collections, les traductions arabes,
+               les 3 articles du journal, et le produit phare seul.
+
+  documents/   LES MODES D'EMPLOI ET LES PREUVES
+               La liste de contrôle avant mise en ligne, le pas à pas,
+               la méthode complète, la conformité et la vitesse mesurée.
+
+────────────────────────────────────────────────────────────────────────
+1. REGARDER LA BOUTIQUE MAINTENANT        (aucune installation)
+────────────────────────────────────────────────────────────────────────
+  Double-clic sur docs/index.html. C'est tout.
+  La bascule « العربية » en haut de l'écran passe le site en arabe.
+
+────────────────────────────────────────────────────────────────────────
+2. LA CONSTRUIRE DANS SHOPIFY              (une heure, sans code)
+────────────────────────────────────────────────────────────────────────
+  Suivez documents/LLUFAN-checklist-mise-en-ligne.md, étape par étape :
+  le thème, les produits, les collections, les pages d'information, les
+  menus, le journal, les réglages, le test de bout en bout, la vitesse
+  une fois en ligne, puis la publication.
+  Pour le détail de chaque manipulation : documents/LLUFAN-DEMO-mode-emploi.md
+
+  Les contenus fournis sont marqués « démonstration » : photos, prix,
+  avis et textes sont à remplacer par les vôtres avant d'ouvrir au
+  public. La liste de ce qui est fictif est au §10 de la liste de contrôle.
+
+────────────────────────────────────────────────────────────────────────
+3. METTRE CETTE COPIE SUR GITHUB           (pour la partager, 5 minutes)
+────────────────────────────────────────────────────────────────────────
+  a. Créez un dépôt sur github.com (bouton « New repository »),
+     par exemple « llufan-site » — public ou privé, comme vous voulez.
+     Ne cochez rien d'autre : le dossier est déjà prêt.
+
+  b. Envoyez le contenu de ce dossier (pas le dossier lui-même) dans le
+     dépôt. Le plus court — un script est fourni, dans cette archive :
+
+         bash publier-sur-github.sh https://github.com/<votre-compte>/<dépôt>.git
+         (ajoutez --sans-paquet pour un envoi deux fois plus léger, si votre
+          connexion est lente : GitHub fournit déjà un bouton « Download ZIP »)
+
+     Il fait le premier commit, relie le dépôt et envoie. Deux autres
+     façons, si vous préférez le faire à la main :
+       • Par l'interface : sur la page du dépôt vide, « uploading an
+         existing file » → glissez les quatre dossiers et ce LIRE-MOI.
+       • En ligne de commande, depuis ce dossier décompressé :
+             git init
+             git add .
+             git commit -m "Boutique LLUFAN — site, thème et documents"
+             git branch -M main
+             git remote add origin https://github.com/<votre-compte>/<dépôt>.git
+             git push -u origin main
+
+  c. Activez la page web : dépôt → Settings → Pages →
+     « Deploy from a branch » → branche « main » → dossier « /docs » →
+     Save. Au bout d'une à deux minutes, la boutique est en ligne à
+     l'adresse https://<votre-compte>.github.io/<dépôt>/
+
+  b-bis. Le paquet lui-même : si llufan.com.zip est rangé juste à côté du
+     dossier décompressé, publier-sur-github.sh le dépose aussi dans le
+     dépôt — il devient téléchargeable d'un clic depuis GitHub. (Sans lui,
+     le bouton vert « Code → Download ZIP » de GitHub produit exactement la
+     même archive.) Pour un fichier de cette taille, GitHub propose aussi
+     l'onglet « Releases → Draft a new release » : c'est l'endroit prévu
+     pour les fichiers lourds, et il n'alourdit pas l'historique.
+
+  d. Pour qu'elle réponde sur llufan.com : dans la même page Settings →
+     Pages, champ « Custom domain » → llufan.com. Ensuite, chez le
+     vendeur où le domaine est enregistré, suivez ce que GitHub affiche
+     (des enregistrements DNS à créer). GitHub fournit la marche à suivre
+     exacte sur cette page.
+
+  À savoir : un dépôt GitHub peut être public (tout le monde voit le
+  code) ou privé (vous seul). Le thème et le site n'ont rien de secret,
+  mais c'est vous qui choisissez.
+
+────────────────────────────────────────────────────────────────────────
+CE QUE CONTIENT CETTE COPIE, EN CHIFFRES (5 octobre 2026)
+────────────────────────────────────────────────────────────────────────
+  Site hors ligne      82 fichiers (41 pages françaises, 40 arabes,
+                       + la page d'ensemble) · aucune connexion requise
+  Thème                archive de 2 Mo, 104 fichiers · import vérifié :
+                       19 points conformes, 0 avertissement, 0 bloquant
+  Vitesse mesurée      accueil ≈ 1,3 s · fiche produit ≈ 2,0 s · rien ne
+                       bouge sous le doigt (0,008) — sur réseau bridé
+  Langues              français et arabe, entièrement, sens droite→gauche
+  Livraison            69 wilayas, 1 541 communes, paiement à la livraison
+  Contenus             10 produits de démonstration, 5 collections,
+                       3 articles, 249 lignes de traduction arabe
