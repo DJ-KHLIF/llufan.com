@@ -12,11 +12,11 @@ aucune connexion requise. La page [`docs/apercu.html`](docs/apercu.html) montre 
 |---|---|
 | `docs/` | La boutique hors ligne : 41 pages françaises + 40 arabes, chacune autonome |
 | `theme/` | `LLUFAN-theme-Shopify.zip` — le thème à importer dans Shopify |
-| `contenus/` | Les CSV d'import (produits, collections), le journal, les traductions arabes |
-| `documents/` | Liste de contrôle avant mise en ligne, pas à pas, méthode, conformité et vitesse mesurée, comparaison avec la référence `doomoo.com`, **remarques du 6 octobre** (bascule français / arabe et audit confronté à nos fichiers) |
+| `contenus/` | Les CSV d'import (produits, collections), le journal, les traductions arabes, et `LLUFAN-suivi-commandes-COD.xlsx` — le registre des commandes payées à la livraison (Shopify ne les voit pas passer : elles arrivent par le formulaire de contact) |
+| `documents/` | Liste de contrôle avant mise en ligne, pas à pas, méthode, conformité et vitesse mesurée, comparaison avec la référence `doomoo.com`, **remarques du 6 octobre**, **réponse au 1ᵉʳ audit** et **réponse au 2ᵉ audit** (`LLUFAN-reponse-2e-audit-6-octobre.html`) |
 | `outils/` | Les contrôles automatiques du projet, dont la commande à passer avant tout envoi (`verifier_avant_envoi.sh`) — voir `outils/LIRE-MOI.txt` |
 
-**État vérifié le 5 octobre 2026 :** import Shopify sans réserve (19 points conformes,
+**État vérifié le 6 octobre 2026 :** import Shopify sans réserve (19 points conformes,
 0 avertissement, 0 bloquant) · accueil ≈ 1,3 s, fiche produit ≈ 2,0 s sur réseau bridé ·
 aucun déplacement sous le doigt (0,008) · 246 + 82 + 729 contrôles de mise en page,
 d'arabe et de téléphone, tous verts.
