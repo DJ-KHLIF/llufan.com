@@ -30,6 +30,12 @@ Vous avez ici cinq dossiers. Voici à quoi ils servent.
                (documents/LLUFAN-REMARQUES-6-OCTOBRE.md).
                La réponse à l'audit, en page lisible et transmissible
                (documents/LLUFAN-reponse-audit-6-octobre.html).
+               LA RÉPONSE AU 2e AUDIT (6 octobre) aussi : ce qui est corrigé dans
+               le thème, ce qui se fait dans Shopify, et les décisions en attente
+               (documents/LLUFAN-reponse-2e-audit-6-octobre.html).
+               Le TABLEAU DE SUIVI DES COMMANDES est dans contenus/ :
+               LLUFAN-suivi-commandes-COD.xlsx — c'est lui qui compte les
+               commandes, puisque Shopify ne les voit pas passer.
 
   outils/      LES CONTRÔLES AUTOMATIQUES
                Le dossier de vérification du projet, dont la commande à
