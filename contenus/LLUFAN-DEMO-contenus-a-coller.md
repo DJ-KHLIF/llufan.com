@@ -693,3 +693,33 @@ Auteur : فريق LLUFAN
 - **Les pages Recherche, Compte et Page introuvable** : ce sont des gabarits
   du thème, rien à créer.
 
+---
+
+## 5. Les emplacements à compléter — le seul reste à faire
+
+Ces mentions sont **volontaires** : elles marquent les informations que
+seule LLUFAN peut fournir (raison sociale, hébergeur, qui paie le retour…).
+Tout le reste des pages est complet et publiable tel quel.
+
+| Réf. | Page | Langue | Ce qui manque |
+|---|---|---|---|
+| 1.4 | Échanges et retours | français | Emplacement à compléter : qui prend en charge les frais de retour (à décider par LLUFAN). |
+| 1.5 | Mentions légales | français | [raison sociale, adresse et registre de commerce à compléter] |
+| 1.5 | Mentions légales | français | [Nom et adresse de l'hébergeur à compléter] |
+| 1.5 | Mentions légales | français | [Mentions relatives aux contenus, aux photos et à la marque à compléter] |
+| 1.6 | Conditions générales de vente | français | [Objet des conditions de vente et champ d'application à compléter.] |
+| 1.6 | Conditions générales de vente | français | [Délais et transporteurs à compléter.] |
+| 1.6 | Conditions générales de vente | français | [Conditions d'échange et de retour à compléter.] |
+| 1.7 | Politique de confidentialité | français | Gabarit de démonstration : à compléter selon les traitements réellement effectués. |
+| 1.7 | Politique de confidentialité | arabe | نموذج تجريبي: يُستكمل حسب المعالجات الفعلية للبيانات. |
+| 3.1 | Comment choisir son coussin d'allaitement | français | Article de démonstration, à remplacer par un texte validé par LLUFAN. |
+| 3.1 | Comment choisir son coussin d'allaitement | arabe | مقال تجريبي، يُستبدل بنصّ معتمد من LLUFAN. |
+| 3.2 | Préparer ses premières tétées : l'organisation pratique | français | Article de démonstration, à remplacer par un texte validé par LLUFAN. |
+| 3.2 | Préparer ses premières tétées : l'organisation pratique | arabe | مقال تجريبي، يُستبدل بنصّ معتمد من LLUFAN. |
+| 3.3 | La chambre de bébé : les essentiels des premiers mois | français | Article de démonstration, à remplacer par un texte validé par LLUFAN. |
+| 3.3 | La chambre de bébé : les essentiels des premiers mois | arabe | مقال تجريبي، يُستبدل بنصّ معتمد من LLUFAN. |
+
+**Règle simple : une page qui contient encore une de ces mentions ne se
+publie pas.** Le plus souvent, une phrase suffit — et si une information
+manque encore, mieux vaut retirer la phrase que la laisser en l'état.
+

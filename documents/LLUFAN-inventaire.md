@@ -54,6 +54,7 @@ publication dans `LLUFAN-checklist-mise-en-ligne.md`.
 | `comparaison-video-reference.html` | La bande vidéo mesurée contre la référence, à 1440 et 390 px |
 | `comparaison-mobile.html` | La version téléphone, mesurée contre la référence |
 | `LLUFAN-conformite-et-vitesse.html` | **La conformité Shopify et la vitesse mesurée**, en une page : 19 points, les temps d'affichage, le poids, ce qui reste à faire. À ouvrir d'un double-clic |
+| `LLUFAN-REMARQUES-6-OCTOBRE.md` | **La bascule français / arabe et l'audit du 6 octobre**, confrontés à nos fichiers : ce qui vient de la boutique, ce qui vient de nous, et les corrections dans l'ordre | À lire avant de retoucher la boutique |
 | `visuel-produit-nomad-avant-apres.png` | Le visuel du produit réel, avant / après |
 
 ### Les documents qui expliquent tout

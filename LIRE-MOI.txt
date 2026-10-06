@@ -25,6 +25,9 @@ Vous avez ici cinq dossiers. Voici à quoi ils servent.
                et la comparaison avec la référence doomoo.com
                (documents/comparaison-doomoo-llufan.html : ce qui est
                identique, ce qui clochait, ce qui a été corrigé).
+               Les remarques du 6 octobre : la bascule français / arabe et
+               l'audit reçu, confronté à nos fichiers
+               (documents/LLUFAN-REMARQUES-6-OCTOBRE.md).
 
   outils/      LES CONTRÔLES AUTOMATIQUES
                Le dossier de vérification du projet, dont la commande à

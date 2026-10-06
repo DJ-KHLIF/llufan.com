@@ -13,7 +13,7 @@ aucune connexion requise. La page [`docs/apercu.html`](docs/apercu.html) montre 
 | `docs/` | La boutique hors ligne : 41 pages françaises + 40 arabes, chacune autonome |
 | `theme/` | `LLUFAN-theme-Shopify.zip` — le thème à importer dans Shopify |
 | `contenus/` | Les CSV d'import (produits, collections), le journal, les traductions arabes |
-| `documents/` | Liste de contrôle avant mise en ligne, pas à pas, méthode, conformité et vitesse mesurée, comparaison avec la référence `doomoo.com` |
+| `documents/` | Liste de contrôle avant mise en ligne, pas à pas, méthode, conformité et vitesse mesurée, comparaison avec la référence `doomoo.com`, **remarques du 6 octobre** (bascule français / arabe et audit confronté à nos fichiers) |
 | `outils/` | Les contrôles automatiques du projet, dont la commande à passer avant tout envoi (`verifier_avant_envoi.sh`) — voir `outils/LIRE-MOI.txt` |
 
 **État vérifié le 5 octobre 2026 :** import Shopify sans réserve (19 points conformes,
