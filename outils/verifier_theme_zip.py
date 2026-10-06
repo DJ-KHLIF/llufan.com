@@ -18,7 +18,10 @@ ANCIEN que celui de l'archive, le dossier a reculé : la restauration est sûre.
 
 Usage :
     python3 verifier_theme_zip.py                montre les différences et conclut
-    python3 verifier_theme_zip.py --restaurer    remet le disque dans l'état de l'archive
+    python3 verifier_theme_zip.py --restaurer    remet le disque dans l'état de
+                                                 l'archive — REFUSÉ si l'archive a
+                                                 elle-même reculé (voir reference/)
+    python3 verifier_theme_zip.py --archive-saine  l'archive est-elle conforme ?
     python3 verifier_theme_zip.py --forcer       restaure même si le journal n'est pas formel
     python3 verifier_theme_zip.py --enregistrer  inscrit l'archive au journal (après reconstruction)
     python3 verifier_theme_zip.py --journal      montre le journal des états
@@ -162,7 +165,58 @@ def ecart_dates():
     return max(dates) - min(dates)
 
 
+def archive_saine():
+    """L'archive sert-elle bien les fichiers de référence ?
+
+    POURQUOI CE CONTRÔLE EXISTE — 6 octobre 2026. Restaurer le dossier depuis
+    l'archive est le bon geste... À CONDITION que l'archive soit saine. Or le
+    6 octobre, l'archive avait été construite pendant un recul : elle servait
+    elle aussi l'ancienne feuille de style. `--restaurer` a donc écrasé le bon
+    fichier par le mauvais. Le contrôle ci-dessous l'interdit désormais : la
+    seule source de vérité pour un fichier surveillé est
+    `llufan/reference/`, jamais l'archive.
+
+    Retourne (vrai, []) ou (faux, [(membre, trouvé, attendu)]).
+    """
+    import hashlib
+    import json
+    import zipfile
+
+    fichier = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           'empreintes-reference.json')
+    if not os.path.exists(fichier):
+        return True, []
+    with open(fichier, encoding='utf-8') as f:
+        ref = json.load(f)
+    surveilles = {c: v for c, v in ref.items() if not c.startswith('_')}
+    if not os.path.exists(ARCHIVE):
+        return True, []
+
+    ecarts = []
+    with zipfile.ZipFile(ARCHIVE) as z:
+        noms = z.namelist()
+        for chemin, attendu in surveilles.items():
+            membre = chemin.split('/', 1)[1] if chemin.startswith('theme/') else chemin
+            candidat = next((n for n in noms if n == membre), None)
+            if candidat is None:
+                continue
+            trouve = hashlib.md5(z.read(candidat)).hexdigest()
+            if trouve != attendu:
+                ecarts.append((candidat, trouve, attendu))
+    return (not ecarts), ecarts
+
+
 def main():
+    if '--archive-saine' in sys.argv:
+        saine, ecarts = archive_saine()
+        if saine:
+            print("  ✓ l'archive sert bien les fichiers de référence")
+            return 0
+        print("  ✗ l'archive a reculé :")
+        for membre, trouve, attendu in ecarts:
+            print('     %s : %s (attendu %s)' % (membre, trouve, attendu))
+        return 1
+
     if '--enregistrer' in sys.argv:
         return enregistrer_etat()
 
@@ -247,6 +301,17 @@ def main():
         return 2
 
     if restaurer:
+        saine, ecarts_archive = archive_saine()
+        if not saine:
+            print('\n⛔ RESTAURATION REFUSÉE : l\'archive elle-même a reculé.')
+            for membre, trouve, attendu in ecarts_archive:
+                print('     %s' % membre)
+                print('       dans l\'archive : %s' % trouve)
+                print('       attendu        : %s' % attendu)
+            print('  Restaurer depuis la copie de référence, puis refaire l\'archive :')
+            print('     python3 verifier_empreintes.py --restaurer')
+            print('     bash refaire_archives.sh')
+            return 3
         a_restaurer = concernes
         if a_restaurer:
             subprocess.run(['unzip', '-o', '-q', ARCHIVE, '-d', THEME] + a_restaurer, check=True)

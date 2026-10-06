@@ -28,6 +28,8 @@ Vous avez ici cinq dossiers. Voici à quoi ils servent.
                Les remarques du 6 octobre : la bascule français / arabe et
                l'audit reçu, confronté à nos fichiers
                (documents/LLUFAN-REMARQUES-6-OCTOBRE.md).
+               La réponse à l'audit, en page lisible et transmissible
+               (documents/LLUFAN-reponse-audit-6-octobre.html).
 
   outils/      LES CONTRÔLES AUTOMATIQUES
                Le dossier de vérification du projet, dont la commande à

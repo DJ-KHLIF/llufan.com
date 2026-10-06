@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLUFAN — réponse à l'audit du 6 octobre 2026</title>
+<meta name="description" content="Ce qui vient du thème, ce qui vient des pages saisies dans Shopify, et les corrections appliquées.">
+<style>
+  :root {
+    --nuit: #1F3462;
+    --encre: #33406B;
+    --coral: #EB735B;
+    --peche: #FAC0AA;
+    --ivoire: #FFFDF9;
+    --sable: #F6F1E9;
+    --trait: #E6E1D6;
+    --vert: #2E7D5B;
+    --rouge: #B4402E;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ivoire);
+    color: var(--encre);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+  }
+  .page { max-width: 62rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  header.entete { border-bottom: 3px solid var(--nuit); padding-bottom: 1.5rem; margin-bottom: 2.5rem; }
+  .marque { font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; color: var(--coral); font-weight: 700; margin: 0 0 .6rem; }
+  h1 { font-size: clamp(1.7rem, 1.2rem + 2vw, 2.6rem); line-height: 1.15; color: var(--nuit); margin: 0 0 .6rem; letter-spacing: -.01em; }
+  .chapeau { font-size: 1.08rem; margin: 0; max-width: 44rem; }
+  .date { margin: 1rem 0 0; font-size: .86rem; color: #6C7699; }
+  h2 { color: var(--nuit); font-size: clamp(1.25rem, 1rem + 1vw, 1.7rem); margin: 3rem 0 .4rem; line-height: 1.2; }
+  h3 { color: var(--nuit); font-size: 1.06rem; margin: 1.8rem 0 .4rem; }
+  p { margin: .8rem 0; }
+  .verdict {
+    background: var(--sable);
+    border-left: 5px solid var(--coral);
+    padding: 1.2rem 1.4rem;
+    border-radius: 0 .6rem .6rem 0;
+    margin: 1.6rem 0;
+  }
+  .verdict p { margin: .25rem 0; }
+  .verdict strong { color: var(--nuit); }
+  table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: .95rem; }
+  th, td { text-align: left; vertical-align: top; padding: .6rem .7rem; border-bottom: 1px solid var(--trait); }
+  th { background: var(--sable); color: var(--nuit); font-size: .84rem; letter-spacing: .04em; text-transform: uppercase; }
+  td.oui { color: var(--vert); font-weight: 600; white-space: nowrap; }
+  td.non { color: var(--rouge); font-weight: 600; white-space: nowrap; }
+  code { background: var(--sable); padding: .08em .35em; border-radius: .25rem; font-size: .88em; }
+  ul, ol { margin: .8rem 0; padding-left: 1.3rem; }
+  li { margin: .35rem 0; }
+  .deux-colonnes { display: grid; gap: 1.2rem; grid-template-columns: 1fr; }
+  @media (min-width: 780px) { .deux-colonnes { grid-template-columns: 1fr 1fr; } }
+  .carte { background: #fff; border: 1px solid var(--trait); border-radius: .7rem; padding: 1.1rem 1.2rem; }
+  .carte h3 { margin-top: 0; }
+  .carte--fait { border-top: 4px solid var(--vert); }
+  .carte--faire { border-top: 4px solid var(--coral); }
+  .etapes { counter-reset: e; list-style: none; padding-left: 0; }
+  .etapes li { counter-increment: e; position: relative; padding-left: 2.6rem; margin: .9rem 0; }
+  .etapes li::before {
+    content: counter(e);
+    position: absolute; left: 0; top: .1rem;
+    width: 1.8rem; height: 1.8rem; border-radius: 50%;
+    background: var(--nuit); color: #fff;
+    font-size: .9rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  footer { margin-top: 3.5rem; padding-top: 1.4rem; border-top: 1px solid var(--trait); font-size: .88rem; color: #6C7699; }
+  .note { font-size: .9rem; background: #FFF6F3; border: 1px solid #F6D9D0; border-radius: .5rem; padding: .8rem 1rem; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="entete">
+    <p class="marque">LLUFAN · maternité · allaitement · confort mère-bébé</p>
+    <h1>Réponse à l'audit — 6 octobre 2026</h1>
+    <p class="chapeau">Ce document confronte l'audit reçu (six points, du parcours de
+    commande au rendu mobile) aux éléments réellement livrés : le thème, les contenus
+    de démonstration et le kit de saisie. But : savoir <strong>où</strong> se trouve
+    chaque défaut, et ce qu'il reste à faire — et par qui.</p>
+    <p class="date">Établi le 6 octobre 2026 · à partir du thème livré (104 fichiers)
+    et de la boutique telle qu'elle est saisie.</p>
+  </header>
+
+  <div class="verdict">
+    <p><strong>Aucun des défauts signalés ne vient des fichiers livrés.</strong></p>
+    <p>Ils viennent de pages saisies directement dans la boutique — dont une page de
+    commande écrite hors de l'identité de la marque (Inter, Playfair Display, tons
+    bruns), qui n'existe dans aucun modèle du thème.</p>
+  </div>
+
+  <h2>1. La vérification, point par point</h2>
+  <p>Chaque élément cité par l'audit a été cherché dans tout le projet. Voici le
+  résultat, sans détour.</p>
+
+  <table>
+    <thead>
+      <tr><th>Ce que l'audit signale</th><th>Dans les fichiers livrés ?</th><th>D'où vient le défaut</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Page « Nomad — Commander », identité Inter + Playfair Display, tons bruns</td>
+        <td class="non">Non</td>
+        <td>Boutique — aucun modèle du thème ne produit cette page</td>
+      </tr>
+      <tr>
+        <td>Livraison à 1 500 DA / 700 DA, gratuité « pour les trois articles »</td>
+        <td class="non">Non</td>
+        <td>Boutique — ces montants ne figurent nulle part dans le thème ni dans les contenus</td>
+      </tr>
+      <tr>
+        <td>Bouton « Confirmer ma commande » → panier → <em>checkout</em></td>
+        <td class="non">Non</td>
+        <td>Boutique — le thème commande directement, sans panier ni <em>checkout</em></td>
+      </tr>
+      <tr>
+        <td>« Livraison &amp; retours » dont le contenu se limite à « s »</td>
+        <td class="non">Non</td>
+        <td>Boutique — ce libellé n'existe pas : nous livrons deux pages distinctes, « Livraison » et « Échanges et retours »</td>
+      </tr>
+      <tr>
+        <td>FAQ 2 à 5 jours contre 3 à 5 jours dans la politique d'expédition</td>
+        <td class="non">Non</td>
+        <td>Boutique — chez nous, FAQ, page Livraison et bandeau d'icônes disent tous « 2 à 5 jours ouvrés »</td>
+      </tr>
+      <tr>
+        <td>Menu : « Maternité », « Bébé », « Nouveautés » → tous <code>/collections/all</code></td>
+        <td class="non">Non</td>
+        <td>Boutique — les documents demandent chaque rubrique vers sa propre collection</td>
+      </tr>
+      <tr>
+        <td>Poncho et housse à 0 unité ; housse sans aucun média</td>
+        <td class="non">Non</td>
+        <td>Boutique — le CSV d'import ne contient ni quantités ni photos, par conception</td>
+      </tr>
+      <tr>
+        <td>Contact et Club Maman « au corps vide »</td>
+        <td class="oui">Conforme</td>
+        <td>Rien à corriger : ces deux pages sont construites par le thème, seul le titre se remplit</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. Ce que le thème fait déjà</h2>
+  <div class="deux-colonnes">
+    <div class="carte carte--fait">
+      <h3>Le parcours de commande</h3>
+      <p>Le formulaire de commande (paiement à la livraison) est placé <strong>sous les
+      boutons d'achat de la fiche produit</strong> : nom, téléphone, wilaya, commune,
+      domicile ou stop-desk, <strong>tarif affiché</strong>, puis envoi de la commande.</p>
+      <ul>
+        <li>pas de panier intermédiaire ;</li>
+        <li>pas de <em>checkout</em> ;</li>
+        <li>le montant affiché est celui du transporteur, calculé pour la wilaya
+        choisie — 69 wilayas, 1 541 communes, deux tarifs (domicile, stop-desk) ;</li>
+        <li>le récapitulatif (article, variante, quantité, sous-total, frais, total)
+        part avec la commande : le montant annoncé est celui que vous lisez.</li>
+      </ul>
+    </div>
+
+    <div class="carte carte--fait">
+      <h3>Les délais et les pages de confiance</h3>
+      <ul>
+        <li>une seule valeur de délai partout : <strong>2 à 5 jours ouvrés</strong> ;</li>
+        <li>les pages « La marque », « Livraison », « Paiement », « Échanges et
+        retours », « Mentions légales », « CGV », « Confidentialité », « Questions
+        fréquentes » et « Club Maman » sont <strong>écrites et complètes</strong> ;</li>
+        <li>« Pièces détachées » n'est pas une page à remplir : c'est un renvoi vers la
+        collection « Accessoires » ;</li>
+        <li>les produits sans photo affichent un visuel de remplacement sur la carte,
+        la fiche et le panier — aucune mise en page cassée.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>3. Ce qui a été corrigé de notre côté</h2>
+  <ul>
+    <li><strong>Bascule de langue</strong> — le sélecteur était éteint par défaut :
+    l'en-tête n'affichait ni « العربية » en français, ni « Français » en arabe. Il est
+    désormais <strong>coché par défaut</strong>, avec la marche à suivre (publier
+    l'arabe dans Paramètres → Langues, puis vérifier la pastille).</li>
+    <li><strong>Kit de saisie, section 5 nouvelle</strong> — « Les emplacements à
+    compléter », avec la référence de chaque ligne : 8 mentions en français
+    (Échanges et retours 1, Mentions légales 3, CGV 3, Confidentialité 1), 1 en arabe,
+    6 dans les articles du journal. Règle écrite noir sur blanc : une page qui contient
+    encore une de ces mentions ne se publie pas.</li>
+    <li><strong>Fiche de renseignements légaux</strong> — les huit informations à
+    réunir, et le nom de l'hébergeur pour une boutique Shopify
+    (Shopify Inc., Ottawa) ; deux phrases au choix pour la question « qui paie les
+    frais de retour ».</li>
+    <li><strong>Menu</strong> — la règle est explicite : chaque rubrique vers sa
+    collection, jamais deux intitulés vers la même adresse. Une variante courte
+    (« Boutique · La marque · Aide ») est proposée pour trois produits, le bouton
+    MAMA'S CLUB restant tel quel.</li>
+    <li><strong>Verrou de la feuille de style</strong> — le dossier du thème avait
+    reculé une troisième fois, à la version d'avant le correctif d'espacements. Un
+    contrôle d'empreintes empêche désormais de reconstruire une archive dans cet état
+    (le recul serait autrement figé dans l'archive publiée).</li>
+  </ul>
+
+  <h2>4. Ce qu'il reste à faire, et par qui</h2>
+  <p>Les sept gestes sont détaillés dans <code>SHOPIFY-A-REMPLIR.txt</code>, section 7.
+  L'essentiel :</p>
+  <ol class="etapes">
+    <li><strong>Supprimer la page « Nomad — Commander ».</strong> Le thème fait déjà ce
+    travail, dans la bonne identité, sans panier ni <em>checkout</em>. Si une page
+    dédiée reste souhaitée, elle peut être reconstruite avec les sections du thème.</li>
+    <li><strong>Trancher le prix de livraison</strong> (700 ou 1 500 DA) et supprimer
+    toute page qui annonce un autre montant : le thème n'affiche pas un forfait, mais
+    le tarif de la wilaya et du mode.</li>
+    <li><strong>Recoller les pages depuis le kit</strong> — elles sont complètes — et
+    remplacer la page vide « Livraison &amp; retours » par les deux pages du thème.</li>
+    <li><strong>Le menu</strong> : une rubrique par collection, ou la variante courte.</li>
+    <li><strong>Stocks</strong> : vérifier le poncho et la housse avant de les mettre
+    en avant. L'import applique la règle « continuer à vendre même à zéro » — à passer
+    en « refuser » si vous préférez bloquer.</li>
+    <li><strong>Photos</strong> : la housse n'en a aucune. Trois prises suffisent —
+    une démonstration d'usage, une vue entière, un détail du tissu.</li>
+    <li><strong>Un tour sur téléphone</strong> après ces changements : nos contrôles
+    portent sur le thème, ils ne peuvent pas juger des pages ajoutées à la main.</li>
+  </ol>
+
+  <div class="note">
+    <p><strong>Deux rappels.</strong> Les textes arabes sont des propositions de
+    démonstration : à faire relire par un arabophone avant publication. Et la bascule
+    français / arabe ne peut apparaître qu'une fois la langue arabe
+    <em>publiée</em> dans Paramètres → Langues.</p>
+  </div>
+
+  <footer>
+    <p>LLUFAN — maternité · allaitement · confort mère-bébé (Algérie).<br>
+    Repères vérifiables : le thème compte 104 fichiers (19 points de conformité
+    Shopify, 0 avertissement) ; le contrôle avant envoi valide le dossier, les règles
+    Shopify, le français contre l'arabe et la conformité en cinq étapes.</p>
+    <p>Documents associés : <code>LLUFAN-REMARQUES-6-OCTOBRE.md</code> (le détail
+    complet), <code>LLUFAN-DEMO-contenus-a-coller.md</code> (les contenus prêts à
+    coller, français et arabe), <code>SHOPIFY-A-REMPLIR.txt</code> (les gestes).</p>
+  </footer>
+
+</div>
+</body>
+</html>

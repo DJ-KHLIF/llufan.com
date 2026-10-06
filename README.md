@@ -31,5 +31,7 @@ stock, e-mails) vit dans **Shopify** ; cette copie sert à regarder, montrer et 
 
 *Pages de preuve : `documents/LLUFAN-conformite-et-vitesse.html` (conformité et vitesse),
 `documents/comparaison-doomoo-llufan.html` (la comparaison avec la référence, point par
+point), `documents/LLUFAN-reponse-audit-6-octobre.html` (la réponse à l'audit : ce qui vient
+du thème, ce qui vient de la boutique)
 point : ce qui est identique, ce qui clochait, ce qui a été corrigé) et
 `documents/README.md` (la méthode complète, chapitre par chapitre).*

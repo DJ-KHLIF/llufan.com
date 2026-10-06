@@ -722,4 +722,25 @@ Tout le reste des pages est complet et publiable tel quel.
 **Règle simple : une page qui contient encore une de ces mentions ne se
 publie pas.** Le plus souvent, une phrase suffit — et si une information
 manque encore, mieux vaut retirer la phrase que la laisser en l'état.
+### Ce qu'il faut réunir pour les remplir (8 lignes)
+
+| Ce qu'il faut | Où le trouver |
+|---|---|
+| Raison sociale exacte | extrait du registre de commerce |
+| Adresse du siège social | idem |
+| Numéro de registre de commerce (RC) | idem |
+| NIF / NIS | vos documents fiscaux |
+| Nom et adresse de l'hébergeur | **une boutique Shopify est hébergée par Shopify** : « Shopify Inc., 151 O'Connor Street, Ground floor, Ottawa, Ontario K2P 2L8, Canada » (à confirmer selon votre contrat) |
+| Qui paie les frais de retour | votre décision — deux phrases possibles ci-dessous |
+| Traitements de données réellement effectués | vos outils : WhatsApp, e-mail, transporteur |
+| Droits sur les photos et les textes | vous (photos et textes LLUFAN) |
+
+**Les frais de retour** — choisissez une phrase, elle remplace la mention 1.4 :
+
+- à la charge de la cliente : *« Les frais de retour sont à la charge de la cliente,
+  sauf si l'article est arrivé endommagé ou ne correspond pas à la commande ; dans
+  ce cas, ils sont à notre charge. »*
+- à la charge de LLUFAN : *« Les frais de retour sont à notre charge pour toute
+  commande retournée dans les 7 jours suivant la réception. »*
+
 

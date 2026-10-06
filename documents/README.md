@@ -1830,11 +1830,30 @@ et les contrôles repassent (121 clés, 0 anomalie).
 
 Pour que ce genre d'écart se voie tout de suite, un contrôle a été ajouté :
 
-    python3 verifier_theme_zip.py                montre ce qui diffère
-    python3 verifier_theme_zip.py --restaurer    remet theme/ dans l'état de l'archive
+    python3 verifier_theme_zip.py                 montre ce qui diffère
+    python3 verifier_theme_zip.py --archive-saine  l'archive sert-elle la référence ?
+    python3 verifier_theme_zip.py --restaurer      remet theme/ dans l'état de l'archive
+                                                   — REFUSÉ si l'archive a reculé
+    python3 verifier_empreintes.py --restaurer     restaure depuis reference/ (l'état sûr)
 
 À lancer après toute restauration d'espace de travail, avant de se fier au
 dossier `theme/`.
+
+**La règle ajoutée le 6 octobre, après la quatrième alerte.** Restaurer le dossier
+depuis l'archive était le bon réflexe — à condition que l'archive soit saine. Or
+ce jour-là, une archive construite *pendant* un recul servait elle aussi
+l'ancienne feuille de style : `--restaurer --forcer` a donc écrasé une copie
+saine du dossier par une version dépassée. Deux garde-fous en sont nés :
+
+1. `reference/theme.css` + `empreintes-reference.json` : la copie de référence de
+   la feuille de style, avec son empreinte. C'est la **seule** source de vérité
+   pour un fichier surveillé — l'archive, elle, peut mentir ;
+2. `verifier_theme_zip.py --restaurer` **refuse** désormais de restaurer depuis
+   une archive non conforme à la référence (code de sortie 3), et le message dit
+   quoi faire : restaurer depuis `reference/`, puis reconstruire.
+
+Le contrôle avant envoi applique cet ordre : la référence d'abord, l'archive
+ensuite.
 
 ### 20.2 Inventaire : ce qui est gardé, et pourquoi
 
@@ -1978,11 +1997,12 @@ traduction exacte — mêmes quatre raccourcis, mêmes destinations.
 | `build_preview.py` | icônes SVG dimensionnées, en-tête de l'aperçu aligné sur le thème, panier avec en-tête, bandeau de démonstration court sur téléphone |
 | `build_arabe.py` | pré-bandeau cliquable, mêmes repères que le français |
 | `build_guide_video.py` | cases et légendes lisibles au doigt |
-| `generer_csv_traductions.py` | messages du bandeau et du pré-bandeau (255 lignes au total) |
+| `generer_kit_shopify.py` | le kit à coller et les traductions arabes, **133 lignes, une par champ** |
 | `verifier_mobile.py` | **nouveau** : 81 pages × 9 largeurs de téléphone |
 | `ref-mobile/` | captures de la référence et de LLUFAN, côte à côte, pour comparaison |
 | `comparaison-mobile.html` | **la page à ouvrir** : les captures de la référence et de LLUFAN face à face, avec les mesures et l'écart volontaire |
-| `verifier_theme_zip.py` | compare `theme/` et l'archive livrée, et **refuse** de restaurer quand c'est l'archive qui a pris du retard |
+| `verifier_theme_zip.py` | compare `theme/` et l'archive livrée ; **refuse** de restaurer quand l'archive a reculé ou pris du retard (`--archive-saine`) |
+| `verifier_empreintes.py` | la feuille de style est-elle celle de `reference/` ? (`--restaurer` la remet en état ; lit le dossier comme l'archive) |
 | `tests/liquidjs/` | le moteur Liquid fourni avec le contrôle vidéo (184 Ko, licence MIT) : `node tests/test-section-video.mjs` marche sans npm et sans réseau |
 
 ---

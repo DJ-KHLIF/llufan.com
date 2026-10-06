@@ -56,6 +56,8 @@ LES OUTILS, UN PAR UN
                                       produits, structure des 40 paires de
                                       pages, réglages communs)
   verifier_theme_zip.py ............. le dossier du thème face à l'archive
+                                      (--archive-saine : l'archive est-elle
+                                      conforme à la référence ?)
                                       (--restaurer, --forcer, --enregistrer,
                                        --journal)
   audit_erreurs_shopify.py .......... les quatre règles que Shopify refuse :
