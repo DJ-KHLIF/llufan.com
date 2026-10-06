@@ -141,6 +141,7 @@ modèle dans le menu de droite.
 - [ ] **Contenu du thème** (Traduire et adapter → *Contenu du thème*, type `ONLINE_STORE_THEME`) : les 17 textes saisis dans les réglages de sections — titre du Club Maman, formulaire de commande, pied de page, bandeau de démonstration. On les repère par leur texte français
 - [ ] **Faire relire les textes arabes** par un locuteur avant publication (ils sont marqués « تجريبي »)
 - [ ] **Bascule de langue** : en français, l'en-tête affiche « العربية » et un clic passe en arabe ; en arabe, il affiche « Français » et ramène au français. **Les deux langues ne doivent jamais apparaître en même temps**
+      - Elle est **cochée par défaut** (« Afficher le sélecteur de langue », groupe « Sélecteurs et mentions légales »). Si vous ne la voyez pas dans l'en-tête : vérifiez d'abord que l'**arabe est publié** (Paramètres → Langues) — le sélecteur ne peut apparaître qu'à partir de deux langues publiées — puis que la case est bien cochée dans les réglages du thème.
 - [ ] Ouvrir `llufan.com/ar` : en-tête, une fiche produit, le formulaire de commande (les prix doivent s'afficher « 3 200 DA », jamais « DA 200 3 »)
 - [ ] Sur téléphone : vérifier que le **panier** s'ouvre par la gauche, et le **menu** et les **filtres** par la droite
 - [ ] Ouvrir le **tri** d'une collection en arabe : le panneau doit rester dans la page (deux défauts de ce genre ont été corrigés le 4 octobre, README §17)

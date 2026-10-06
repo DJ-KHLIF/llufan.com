@@ -28,6 +28,7 @@ LE CONTRÔLE À PASSER AVANT TOUT ENVOI — une seule commande
 Elle fait quatre choses et conclut par « tout est prêt : on peut envoyer » ou
 « NE PAS ENVOYER » :
 
+    0. les fichiers qui ont déjà reculé (la feuille de style du thème) ;
     1. le dossier du thème face à l'archive — et si le dossier a reculé, elle
        le RESTAURE toute seule depuis l'archive (l'archive est l'état livré) ;
     2. les règles que Shopify applique à l'import ;
@@ -42,6 +43,14 @@ une version dépassée. C'est arrivé une fois — plus depuis.
 LES OUTILS, UN PAR UN
 ---------------------------------------------------------------------------
   verifier_avant_envoi.sh ............ le contrôle complet avant envoi
+  verifier_empreintes.py ............ la feuille de style a-t-elle reculé ?
+                                      Il lit le dossier du thème s'il est là,
+                                      sinon la feuille rangée DANS l'archive
+                                      LLUFAN-theme-Shopify.zip livrée ici :
+                                      « les fichiers surveillés sont intacts »
+                                      répond de la version téléchargée.
+                                      (--restaurer remet la copie de secours
+                                      quand le dossier est présent)
   audit_contenu_fr_ar.py ............ la version arabe répond-elle exactement à
                                       la version française ? (collections des
                                       produits, structure des 40 paires de

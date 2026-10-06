@@ -1,0 +1,5 @@
+{
+  "_lisez_moi": "Empreintes des fichiers du thème qui ont déjà reculé. refaire_archives.sh refuse de construire une archive si l'un d'eux n'est plus identique : sans ce verrou, une reconstruction peut figer un recul dans l'archive et le publier.",
+  "_restaurer": "copier llufan/reference/theme.css sur llufan/theme/assets/theme.css",
+  "theme/assets/theme.css": "f2bede57e2532754249ecafab86826a9"
+}
