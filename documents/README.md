@@ -1418,7 +1418,7 @@ les identifiants internes de chaque fiche — impossibles à connaître avant qu
 les produits existent. Le fichier livré prend donc l'autre bout du problème :
 
 * il contient, en face du texte français, **le texte arabe déjà écrit** ;
-* il couvre aujourd'hui **249 lignes** (voir §19.5) : les 10 produits (titre,
+* il couvre aujourd'hui **133 lignes, une par champ tel que Shopify l'exporte** (le 6 octobre ; c'était 249 lignes écrites en blocs avant cette date — une page s'y trouvait découpée en 11 lignes, ce qui obligeait à recoller les morceaux) : les 10 produits (titre,
   description, type), leurs options et leurs valeurs de couleur ou de taille,
   les 5 collections, les 7 pages d'information, la FAQ, le Club Maman, la page
   contact, les 3 articles du journal et les 17 textes saisis dans les réglages
@@ -1460,11 +1460,11 @@ dans les contrôles automatiques, seulement à l'œil.
 |---|---|
 | `demo/contenu_demo_ar.py` | le contenu de démonstration en arabe (produits, collections, FAQ, panier, titres des pages) |
 | `build_arabe.py` | produit les quatre pages arabes (+ contrôle des liens internes) |
-| `generer_csv_traductions.py` | produit `LLUFAN-DEMO-traductions-ar.csv` |
+| `generer_kit_shopify.py` | produit `LLUFAN-DEMO-traductions-ar.csv` (une ligne par champ Shopify) **et** `LLUFAN-DEMO-contenus-a-coller.md` (pages, collections, articles — français et arabe assemblés) |
 | `verifier_arabe.py` | contrôle des pages arabes (sens, polices, miroir, formulaire) |
 | `verifier_pages.py` | contrôle de **toutes** les pages aux trois largeurs |
 | `preview/ar-*.html` | les quatre pages arabes |
-| `LLUFAN-DEMO-traductions-ar.csv` | le texte arabe à coller dans Shopify |
+| `LLUFAN-DEMO-traductions-ar.csv` | le texte arabe à coller dans Shopify (133 lignes, une par champ) |
 
 ### 16.5 État des contrôles
 

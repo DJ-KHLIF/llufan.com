@@ -120,7 +120,7 @@ modèle dans le menu de droite.
 - [ ] Les **textes** des pages d'information, les **3 articles** du journal, les **8 questions** de la FAQ
 - [ ] Les **délais « 2 à 5 jours ouvrés »** et les **tarifs de livraison** : provisoires
 - [ ] Les **réseaux sociaux** du pied de page : emplacements vides, à relier à vos comptes
-- [ ] Les **textes arabes** des pages `preview/ar-*.html` et du fichier `LLUFAN-DEMO-traductions-ar.csv` (249 lignes) : propositions de traduction, à valider par un arabophone
+- [ ] Les **textes arabes** des pages `preview/ar-*.html` et des fichiers `LLUFAN-DEMO-contenus-a-coller.md` (pages, collections, articles) et `LLUFAN-DEMO-traductions-ar.csv` (133 lignes) : propositions de traduction, à valider par un arabophone
 
 ## 11. Le test de bout en bout, avant de publier
 
@@ -137,7 +137,7 @@ modèle dans le menu de droite.
 - [ ] Éditeur → Réglages du thème → **Sélecteurs et mentions légales** : « Afficher le sélecteur de langue » coché, « Choisir la langue d'après celle du navigateur » coché (ou décoché, si le choix doit toujours venir de la cliente)
 - [ ] Applications → **Traduire et adapter** : traduire les **produits**, **collections**, **pages**, **articles** et **politiques** — les libellés de l'interface, eux, sont déjà traduits dans le thème (`locales/ar.json` — 136 clés, les 123 utilisées
   toutes présentes)
-- [ ] **Texte arabe déjà écrit** : `LLUFAN-DEMO-traductions-ar.csv` (249 lignes : tout le contenu, pages d'information, FAQ, Club Maman, journal, plus les textes des réglages de sections) — exporter les traductions depuis Shopify, coller la colonne « العربية » dans « Translated content », réimporter. Détail : README §16.2 et §19.5
+- [ ] **Texte arabe déjà écrit** : `LLUFAN-DEMO-traductions-ar.csv` — **133 lignes, une par champ** tel que Shopify l'exporte (les corps de page sont assemblés en HTML, le collage se fait donc ligne à ligne sans rien reconstituer). Exporter les traductions depuis Shopify, coller la colonne « العربية » dans « Translated content », réimporter. Les textes français à créer d'abord : `LLUFAN-DEMO-contenus-a-coller.md`. Détail : README §16.2
 - [ ] **Contenu du thème** (Traduire et adapter → *Contenu du thème*, type `ONLINE_STORE_THEME`) : les 17 textes saisis dans les réglages de sections — titre du Club Maman, formulaire de commande, pied de page, bandeau de démonstration. On les repère par leur texte français
 - [ ] **Faire relire les textes arabes** par un locuteur avant publication (ils sont marqués « تجريبي »)
 - [ ] **Bascule de langue** : en français, l'en-tête affiche « العربية » et un clic passe en arabe ; en arabe, il affiche « Français » et ramène au français. **Les deux langues ne doivent jamais apparaître en même temps**

@@ -24,7 +24,8 @@ indiquées dans le tableau. Vérification : `python3 verifier_import_shopify.py`
 | `preview/*.html` | L'aperçu hors boutique : **81 pages** cliquables — les **41 pages françaises** et leurs **40 jumelles arabes** (accueil, collections, fiches produit, panier, pages d'information, FAQ, Club Maman, journal et articles, contact, recherche, compte, page introuvable). **N'est plus conservé sur le disque** (il pesait 60 Mo et se refait tout seul) | le reconstruire d'abord : `bash llufan/refaire_apercu.sh` (quelques secondes), puis ouvrir `llufan/preview/apercu.html` |
 | `LLUFAN-apercu-local.zip` | **La même chose, à emporter** : les 81 pages + page d'ensemble + `LIRE-MOI.txt`, à ouvrir sur n'importe quel ordinateur hors ligne (36 Mo). **Refait à la demande**, lui aussi | `bash llufan/refaire_archives.sh`, puis décompresser et double-cliquer sur `apercu.html` |
 | `LLUFAN-DEMO-journal-a-publier.md` | 3 articles de blog de démonstration, prêts à coller | Boutique en ligne → Blog → Ajouter un article |
-| `LLUFAN-DEMO-traductions-ar.csv` | Le texte **arabe** de tout le contenu : produits, collections, 7 pages d'information, FAQ, Club Maman, contact, journal et articles, plus les 17 textes des réglages de sections (**255 lignes**), à coller dans l'export de traduction Shopify | Paramètres → Langues → Exporter / Importer |
+| `LLUFAN-DEMO-traductions-ar.csv` | Le texte **arabe** de tout le contenu, réaligné le 6 octobre sur les lignes que Shopify exporte : **133 lignes, une par champ** (les corps de page sont assemblés en HTML — avant, une page était découpée en 11 lignes et il fallait recoller les morceaux). À coller dans l'export de traduction Shopify | Paramètres → Langues → Exporter / Importer |
+| `LLUFAN-DEMO-contenus-a-coller.md` | **À coller, sans rien retaper** : les 10 pages, les 5 collections et les 3 articles du journal, en français **et** en arabe, déjà assemblés (titre + corps de page). Créé le 6 octobre | Boutique en ligne → Pages / Collections / Articles |
 | `LLUFAN-checklist-mise-en-ligne.md` | **Liste de contrôle** : les 13 étapes à cocher avant publication | à suivre dans l'ordre, au moment de mettre en ligne |
 | `locales/ar.json` (dans le thème) | Les libellés de l'interface en arabe (**121 clés** : panier, filtres, commande, recherche, compte, page introuvable) : le thème est déjà bilingue, il n'y a que la langue à publier (§7) | Paramètres → Langues |
 
@@ -161,9 +162,10 @@ manipulations, toutes dans Shopify :
 1. **Publier la langue** — Paramètres → *Langues* → *Ajouter une langue* →
    **العربية** → **Publier**. Shopify crée alors l'adresse `llufan.com/ar`.
 2. **Traduire les contenus** — le texte arabe de **tout le contenu** est déjà écrit :
-   `LLUFAN-DEMO-traductions-ar.csv` (255 lignes : produits, collections, 7 pages
-   d'information, FAQ, Club Maman, contact, journal et 3 articles, plus les 17 textes
-   saisis dans les réglages de sections). Exporter les traductions depuis Shopify,
+   `LLUFAN-DEMO-traductions-ar.csv` (133 lignes, une par champ tel que Shopify
+   l'exporte : produits, collections, pages, FAQ, Club Maman, contact, journal et
+   3 articles, plus les 17 textes saisis dans les réglages de sections). Les textes
+   français à créer d'abord sont dans `LLUFAN-DEMO-contenus-a-coller.md`. Exporter les traductions depuis Shopify,
    coller la colonne « العربية » dans « Translated content », réimporter (README §16.2
    et §19.5). Pour compléter ou corriger : Applications → *Traduire et adapter* —
    contenus, politiques, menus, **et « Contenu du thème »** pour les textes de sections

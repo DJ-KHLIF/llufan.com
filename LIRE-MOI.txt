@@ -112,4 +112,6 @@ CE QUE CONTIENT CETTE COPIE, EN CHIFFRES (5 octobre 2026)
   Langues              français et arabe, entièrement, sens droite→gauche
   Livraison            69 wilayas, 1 541 communes, paiement à la livraison
   Contenus             10 produits de démonstration, 5 collections,
-                       3 articles, 249 lignes de traduction arabe
+                       3 articles, 133 lignes de traduction arabe,
+                         et les contenus prêts à coller :
+                         LLUFAN-DEMO-contenus-a-coller.md

@@ -35,7 +35,8 @@ Ce qui manquait est signalé, vide, ou identifié « démonstration ».
 | `LLUFAN-DEMO-produits.csv` | Les **10 produits** de démonstration, avec leurs 28 variantes | Produits → Importer |
 | `LLUFAN-DEMO-collections.csv` | Les **5 collections** : Maternité, Allaitement, Bébé, Nouveautés, Accessoires | Produits → Collections |
 | `LLUFAN-DEMO-journal-a-publier.md` | Les **3 articles** du journal, à coller (Shopify n'importe pas les articles par fichier) | Boutique en ligne → Articles |
-| `LLUFAN-DEMO-traductions-ar.csv` | Les **255 lignes** de traduction arabe (produits, collections, pages, FAQ, Club Maman, journal, réglages) | Paramètres → Langues → Importer |
+| `LLUFAN-DEMO-traductions-ar.csv` | Les **133 lignes** de traduction arabe, une par champ Shopify (les corps de page sont assemblés en HTML) | Paramètres → Langues → Importer |
+| `LLUFAN-DEMO-contenus-a-coller.md` | Les **10 pages, 5 collections et 3 articles** en français **et** en arabe, prêts à coller (titre + corps) | Boutique en ligne → Pages / Collections / Articles |
 | `LLUFAN-produit-Nomad-a-importer.csv` | Le **produit phare** seul, si vous voulez commencer par un | Produits → Importer |
 | `demo/produits/*.jpg` | Les **10 visuels produit** | À glisser sur les fiches |
 
