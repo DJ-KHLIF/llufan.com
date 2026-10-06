@@ -87,7 +87,19 @@ def attention(titre, detail):
 
 
 def lire(chemin):
-    return io.open(chemin, encoding='utf-8', errors='replace').read()
+    """Le texte d'un fichier du thème.
+
+    Les fichiers de langue écrits par l'éditeur de langue de Shopify commencent
+    par un commentaire « auto-generated » — du JSON avec un en-tête, donc, que
+    json.loads refuse tel quel. On retire cet en-tête : c'est ce que fait
+    Shopify lui-même, et sans cela le contrôle planterait sur un fichier valide.
+    """
+    texte = io.open(chemin, encoding='utf-8', errors='replace').read()
+    if texte.startswith('/*'):
+        fin = texte.find('*/')
+        if fin != -1:
+            texte = texte[fin + 2:].lstrip()
+    return texte
 
 
 def fichiers_du_theme():
