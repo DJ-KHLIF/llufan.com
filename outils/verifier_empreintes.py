@@ -24,6 +24,17 @@
 #      python3 verifier_empreintes.py              contrôle (code 0 = bon)
 #      python3 verifier_empreintes.py --restaurer  remet la copie de secours
 #                                                  (dossier seulement)
+#      python3 verifier_empreintes.py --enregistrer
+#                                                  adopte la version PRÉSENTE
+#                                                  comme nouvelle référence
+
+#  `--enregistrer` sert quand le changement est VOULU : on a modifié la feuille
+#  de style exprès (correctif d'air, sélecteur de langue, textes alternatifs) et
+#  le verrou, lui, ne sait pas distinguer un progrès d'un recul. Il recopie
+#  donc la version présente dans `reference/` et met à jour le fichier
+#  d'empreintes, en annonçant à voix haute ce qu'il adopte : ancienne empreinte,
+#  nouvelle empreinte, poids avant/après. À n'employer qu'après avoir regardé ce
+#  qui a changé — c'est le seul geste qui peut figer un recul pour de bon.
 # ---------------------------------------------------------------------------
 import hashlib
 import io
@@ -79,6 +90,44 @@ def chercher(chemin):
     return None, None, None
 
 
+def enregistrer(surveilles):
+    """Adopte la version PRÉSENTE des fichiers surveillés comme référence.
+
+    À n'utiliser que sur un changement voulu : c'est le seul geste du dispositif
+    qui puisse figer un recul. On annonce donc ce qu'on adopte, en clair.
+    """
+    ref = json.load(io.open(FICHIER, encoding='utf-8'))
+    for chemin, ancien in list(surveilles.items()):
+        actuel, etiquette, sur_disque = chercher(chemin)
+        if actuel is None:
+            print("  · %s introuvable : rien enregistré" % chemin)
+            continue
+        if actuel == ancien:
+            print("  · %s : déjà à jour (%s)" % (chemin, ancien))
+            continue
+        if not sur_disque:
+            print("  ✗ %s : le fichier n'est pas dans un dossier, impossible de "
+                  "copier la copie de secours" % chemin)
+            continue
+        taille_avant = taille_apres = 0
+        secours = os.path.join(ICI, 'reference', os.path.basename(chemin))
+        if os.path.exists(secours):
+            taille_avant = os.path.getsize(secours)
+        shutil.copy2(sur_disque, secours)
+        taille_apres = os.path.getsize(secours)
+        ref[chemin] = actuel
+        print("  ⚠ NOUVELLE RÉFÉRENCE ADOPTÉE : %s" % chemin)
+        print("       ancienne empreinte : %s (%d octets)" % (ancien, taille_avant))
+        print("       nouvelle empreinte : %s (%d octets)" % (actuel, taille_apres))
+        print("       copie de secours mise à jour : reference/%s"
+              % os.path.basename(chemin))
+    io.open(FICHIER, 'w', encoding='utf-8').write(
+        json.dumps(ref, ensure_ascii=False, indent=2) + '\n')
+    print("  ✓ empreintes enregistrées. Le contrôle suivant passe si le dossier "
+          "ne recule plus.")
+    return 0
+
+
 def main():
     restaurer = '--restaurer' in sys.argv
     if not os.path.exists(FICHIER):
@@ -86,6 +135,9 @@ def main():
         return 0
     ref = json.load(io.open(FICHIER, encoding='utf-8'))
     surveilles = {c: v for c, v in ref.items() if not c.startswith('_')}
+
+    if '--enregistrer' in sys.argv:
+        return enregistrer(surveilles)
 
     ecarts, repares, introuvables, verifies = [], [], [], []
     for chemin, attendu in surveilles.items():

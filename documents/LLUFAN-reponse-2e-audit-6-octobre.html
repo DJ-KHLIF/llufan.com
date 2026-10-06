@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLUFAN — réponse au 2ᵉ audit du 6 octobre 2026</title>
+<style>
+  :root{
+    --nuit:#1f1b2e; --ivoire:#f6f1e7; --creme:#fffdf8; --coral:#d96a55;
+    --vert:#3f7d63; --gris:#6b6478; --ligne:#e2d9c9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ivoire);color:var(--nuit);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       line-height:1.62;font-size:16px}
+  .page{max-width:900px;margin:0 auto;padding:0 22px 70px}
+  header{padding:52px 0 26px;border-bottom:3px solid var(--nuit);margin-bottom:34px}
+  .marque{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--coral);font-weight:700}
+  h1{font-size:2rem;line-height:1.2;margin:.5rem 0 .6rem;font-weight:700}
+  header p{margin:0;color:var(--gris);font-size:.95rem}
+  h2{font-size:1.22rem;margin:44px 0 10px;padding-top:20px;border-top:2px solid var(--ligne)}
+  h2 .num{display:inline-block;min-width:2rem;color:var(--coral)}
+  h3{font-size:1rem;margin:22px 0 6px;text-transform:uppercase;letter-spacing:.06em;
+     font-size:.82rem;color:var(--gris)}
+  p{margin:.6rem 0}
+  ul,ol{margin:.5rem 0 .5rem 1.15rem;padding:0}
+  li{margin:.35rem 0}
+  code{background:#efe8db;padding:1px 5px;border-radius:4px;font-size:.86em}
+  .carte{background:var(--creme);border:1px solid var(--ligne);border-radius:10px;
+         padding:16px 18px;margin:14px 0}
+  .carte.fait{border-left:5px solid var(--vert)}
+  .carte.vous{border-left:5px solid var(--coral)}
+  .carte.decision{border-left:5px solid var(--nuit)}
+  .carte h4{margin:0 0 6px;font-size:.95rem}
+  .etat{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.08em;
+        text-transform:uppercase;padding:3px 9px;border-radius:20px;vertical-align:middle}
+  .etat.fait{background:#dcece4;color:#245c44}
+  .etat.vous{background:#fbe2dc;color:#8f3524}
+  .etat.moi{background:#e6e1f2;color:#3b2f5e}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.9rem}
+  th,td{border:1px solid var(--ligne);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#efe8db;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+  .suivi{list-style:none;margin-left:0}
+  .suivi li{padding-left:1.6rem;position:relative}
+  .suivi li:before{content:"→";position:absolute;left:0;color:var(--coral);font-weight:700}
+  footer{margin-top:46px;padding-top:18px;border-top:2px solid var(--ligne);
+         font-size:.85rem;color:var(--gris)}
+  .attention{background:#fdf3e3;border:1px solid #ecd6a8;border-radius:10px;padding:14px 16px;margin:16px 0}
+  .attention strong{color:#8a5a12}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="marque">LLUFAN · boutique maternité &amp; allaitement</p>
+  <h1>Réponse au 2<sup>e</sup> audit du 6 octobre 2026</h1>
+  <p>Huit volets · ce qui est corrigé dans le thème, ce qui se fait dans Shopify, et les trois décisions qui vous reviennent.</p>
+</header>
+
+<h2><span class="num">1.</span> Le point le plus important de ce tour</h2>
+
+<div class="attention">
+  <p><strong>La feuille de style du thème avait reculé une cinquième fois — et, avec elle, les réglages du thème.</strong>
+  Le correctif d'« air » (marges de page 20 → 32 → 48 px, rythme vertical 40 → 64 px) avait de nouveau disparu du
+  dossier de travail, et le réglage « Afficher le sélecteur de langue » s'était remis à <code>false</code>.</p>
+  <p>C'est très probablement <strong>la raison pour laquelle la bascule français / arabe n'apparaissait pas</strong> chez vous :
+  le sélecteur est bien dans le code, mais un réglage éteint suffisait à le cacher. Les deux fichiers ont été remis
+  à la version publiée, la feuille réparée, et j'ai renforcé le verrou pour que cela ne puisse plus passer inaperçu.</p>
+</div>
+
+<p>Trois fichiers sont désormais surveillés au lieu d'un — <code>theme.css</code>, <code>settings_data.json</code> et
+<code>settings_schema.json</code> —, et un geste nouveau a été ajouté pour les changements <em>voulus</em> :
+<code>verifier_empreintes.py --enregistrer</code>, qui annonce à voix haute l'ancienne et la nouvelle empreinte avant
+d'adopter une version. Le prochain envoi est donc protégé contre ce type de recul, y compris sur les réglages.</p>
+
+<h2><span class="num">2.</span> Corrigé dans le thème (moi)</h2>
+
+<div class="carte fait">
+  <h4>Le sélecteur de langue devient « Français | العربية » <span class="etat fait">fait</span></h4>
+  <p>Deux mots, un séparateur, <strong>aucun drapeau</strong>, la langue en cours en gras et non cliquable — exactement
+  ce que demandait l'audit. L'ordre reste <em>français d'abord</em> ; sur une page arabe, la ligne s'inverse
+  naturellement (la langue en cours se lit en premier). Sur téléphone, il reste discret : il ne prend pas la place
+  du panier ni du menu.</p>
+</div>
+
+<div class="carte fait">
+  <h4>Traductions arabes des textes du thème : 23 → 182 <span class="etat fait">fait</span></h4>
+  <p>L'audit avait raison : les textes saisis <em>dans</em> les gabarits — titres et boutons de l'accueil, blocs de
+  réassurance, blocs de la fiche produit, FAQ, pied de page, en-tête, pages d'information — n'avaient pas
+  d'équivalent arabe. Le fichier de traductions passe de 133 à <strong>292 lignes</strong>, dont <strong>182 pour le
+  thème</strong> (auparavant 23). Une cliente en arabe ne tombe plus sur des blocs français au milieu de la page.</p>
+  <p>Les mentions de démonstration restent visibles en arabe (« نص تجريبي ») : une page traduite ne doit pas faire
+  oublier qu'elle n'est pas encore validée. Et aucune traduction ne promet un soulagement ou un effet sur la santé.</p>
+</div>
+
+<div class="carte fait">
+  <h4>Textes alternatifs des images : 12 images muettes, plus aucune <span class="etat fait">fait</span></h4>
+  <p>L'audit en relevait 5 ; le contrôle complet en a trouvé <strong>12</strong> (bandeau de collection, héros,
+  collections, texte + image, cartes produit). Toutes ont désormais un texte alternatif : celui que vous écrirez sur
+  la photo dans Shopify, sinon le titre du produit et sa couleur (« Coussin Nomad — Bleu »), sinon le titre seul.
+  C'est utile pour les lecteurs d'écran <em>et</em> pour la recherche.</p>
+</div>
+
+<div class="carte fait">
+  <h4>Deux défauts techniques trouvés au passage <span class="etat fait">fait</span></h4>
+  <p>Un filtre <code>| append:</code> s'était glissé dans une balise <code>{% form %}</code> du nouveau sélecteur :
+  Shopify refuse ce montage à l'envoi. Corrigé, et l'outil de contrôle a lui aussi été réparé (il plantait au lieu
+  d'afficher l'erreur — c'est comme cela qu'un défaut reste invisible).</p>
+</div>
+
+<h2><span class="num">3.</span> Ce qui se fait dans Shopify (vous)</h2>
+
+<p>Trois gestes débloquent à eux seuls la plus grande partie de l'audit. Ils sont détaillés, pas à pas, dans
+<code>SHOPIFY-A-REMPLIR.txt</code>.</p>
+
+<table>
+  <tr><th>Geste</th><th>Pourquoi</th><th>Où</th></tr>
+  <tr>
+    <td><strong>Publier l'arabe</strong></td>
+    <td>Sans deuxième langue <em>publiée</em>, Shopify n'affiche aucun sélecteur — même si le thème est bien réglé.
+    C'est la première cause à écarter.</td>
+    <td>Paramètres → Langues → Ajouter une langue → العربية → <strong>Publier</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Importer le thème à jour</strong></td>
+    <td>Le fichier <code>LLUFAN-theme-Shopify.zip</code> de cet envoi contient les corrections ci-dessus, et les
+    réglages remis à la version publiée (sélecteur allumé).</td>
+    <td>Boutique en ligne → Thèmes → Importer</td>
+  </tr>
+  <tr>
+    <td><strong>Coller les traductions du thème</strong></td>
+    <td>Les 182 lignes du nouveau <code>LLUFAN-DEMO-traductions-ar.csv</code> couvrent l'accueil, la fiche produit,
+    les pages et le pied de page.</td>
+    <td>Paramètres → Langues → Exporter, puis coller la colonne <em>Translated content</em> et importer</td>
+  </tr>
+</table>
+
+<div class="carte vous">
+  <h4>Les contenus qui restent à coller <span class="etat vous">vous</span></h4>
+  <p>Les pages « à compléter » (La marque, FAQ, Nos engagements…) ont leur texte définitif dans
+  <code>LLUFAN-DEMO-contenus-a-coller.md</code> : 10 pages en français et en arabe, déjà mises en forme. Deux pages
+  dépendent de vous et ne peuvent pas être inventées : <strong>Pièces détachées</strong> (prix et disponibilité des
+  housses et ponchos) et <strong>Nos engagements</strong> (ce que vous vous engagez à faire — échange, délai,
+  réponse).</p>
+</div>
+
+<div class="carte vous">
+  <h4>Les photos et les stocks <span class="etat vous">vous</span></h4>
+  <p>La fiche Nomad demande des photos réelles des trois couleurs, liées aux variantes ; la housse est sans image et
+  à stock 0 ; le poncho aussi. Tant que ces deux accessoires ne sont pas livrables, l'ensemble complet ne doit pas
+  être mis en avant — c'est ce que dit votre audit, et je le tiens dans les textes du thème.</p>
+  <p>Petit détail utile : dans Shopify, chaque photo accepte une <strong>description</strong> (texte alternatif).
+  Écrivez-y « Coussin Nomad — bleu, vue de face » plutôt que rien : c'est ce texte qui sera lu par Google et par les
+  lecteurs d'écran.</p>
+</div>
+
+<h2><span class="num">4.</span> Les données du 6 septembre au 5 octobre : ce n'est pas une panne de paiement</h2>
+
+<p>528 sessions, 4 ajouts au panier (0,76 %), 5 checkouts (0,95 %), <strong>0 commande, 0 DZD</strong>. Lu tel quel,
+cela ressemble à un tunnel cassé. Il y a une explication technique simple, et elle change complètement la lecture :</p>
+
+<div class="carte decision">
+  <p><strong>Une commande LLUFAN n'est pas une « commande Shopify ».</strong> Le client remplit le formulaire de la
+  fiche produit (nom, téléphone, wilaya, commune, mode de livraison) ; le message part dans votre boîte, via
+  l'e-mail de la boutique. Il n'y a ni panier obligatoire, ni page de paiement — c'est ce qui a été construit pour le
+  paiement à la livraison.</p>
+  <p>Shopify comptera donc <strong>toujours</strong> 0 commande et 0 DZD, même le jour où vous en vendrez dix. Le
+  « checkout » compté par les statistiques est une étape de navigation, pas un paiement échoué.</p>
+</div>
+
+<p><strong>Où sont donc vos commandes ?</strong> Dans vos e-mails (Formulaires de contact) et dans
+Shopify → Contenu → Formulaires de contact. Si aucun message n'y figure pour ces cinq checkouts, alors la question
+n'est pas « le paiement ne marche pas » mais « les visiteurs n'ont pas rempli le formulaire » — et là, il faut
+regarder la qualité du trafic et le téléphone, pas le tunnel.</p>
+
+<p>Pour ne plus jamais être aveugle, j'ai ajouté un <strong>tableau de suivi</strong> :
+<code>LLUFAN-suivi-commandes-COD.xlsx</code>. Une ligne par commande, les statuts de votre liste (reçue, confirmée,
+expédiée, livrée, refusée, encaissée), les frais réels du transporteur, votre coût, et un <strong>net encaissé</strong>
+calculé tout seul. C'est ce tableau, et non le tableau de bord Shopify, qui vous dira si la publicité est rentable :
+on compare le net au budget publicitaire, jamais les visites.</p>
+
+<h2><span class="num">5.</span> Les trois décisions qui vous reviennent</h2>
+
+<div class="carte decision">
+  <h4>Les polices arabes : garder l'embarqué, ou revenir à Tajawal <span class="etat moi">à trancher</span></h4>
+  <p>L'audit cite une charte « Fraunces / DM Sans / <strong>Tajawal</strong> ». Le thème, lui, embarque
+  <strong>Jost</strong> et <strong>Fraunces</strong> pour le latin, et pour l'arabe <strong>IBM Plex Sans Arabic</strong>
+  (titres) + <strong>Noto Naskh Arabic</strong> (texte) — quatre fichiers auto-hébergés, aucun appel à Google,
+  aucun décalage d'affichage. Aucun Tajawal, aucun DM Sans.</p>
+  <p>Deux chemins, à votre choix : <strong>(A)</strong> on garde l'embarqué et la charte écrite est corrigée en
+  conséquence — rien à faire, c'est déjà en place ; <strong>(B)</strong> on revient à Tajawal et DM Sans, et je
+  remplace les fichiers de police (Tajawal n'a pas les mêmes proportions : les tailles de titres arabes devront
+  être revérifiées). Je ne touche à rien avant votre réponse.</p>
+</div>
+
+<div class="carte decision">
+  <h4>Le délai : une seule valeur pour toute la boutique <span class="etat fait">déjà cohérent</span></h4>
+  <p>Le « 3 à 5 » de l'audit n'existe nulle part dans mes fichiers : partout, la valeur est <strong>« 2 à 5 jours
+  ouvrés selon la wilaya »</strong>, avec la mention que c'est un délai de démonstration à confirmer selon le
+  transporteur. Si votre boutique affiche encore autre chose, c'est un texte saisi à la main qu'il faut remplacer
+  par celui du kit — une fois, partout.</p>
+</div>
+
+<div class="carte decision">
+  <h4>Le tarif de livraison et le téléphone : deux informations à donner <span class="etat vous">vous</span></h4>
+  <p>Le site calcule les frais par wilaya (69 wilayas, 1 541 communes, domicile et stop-desk) à partir d'un barème
+  de démonstration. Le « 700 DA » retenu doit venir de votre transporteur : donnez-moi la grille réelle et je
+  remplace le barème. De même, la page de confidentialité attend un <strong>numéro de téléphone</strong> (elle est
+  vide sur ce point) et un e-mail unique — le kit vous laisse deux phrases au choix pour l'hébergeur et les retours.</p>
+</div>
+
+<h2><span class="num">6.</span> Ce que je ne peux pas vérifier moi-même</h2>
+
+<p>L'audit le dit : l'accès automatisé au site a été bloqué. Trois choses restent donc à constater <em>dans</em> la
+boutique, écran en main. Un protocole court, à faire une fois :</p>
+
+<ol class="suivi">
+  <li><strong>Sur téléphone, en français</strong> : fiche Nomad → couleur → quantité → wilaya → commune → mode →
+  total affiché = prix + frais → envoi du formulaire. Vérifiez l'arrivée du message.</li>
+  <li><strong>Puis en arabe</strong>, même parcours : les champs doivent rester lisibles (téléphone et adresse
+  s'écrivent de gauche à droite, alignés à droite), et le message doit vous parvenir identique.</li>
+  <li><strong>En changeant de langue au milieu du parcours</strong> : on ne doit pas perdre la fiche produit. Les
+  liens du thème étant construits par Shopify, la langue suit la page ; les informations déjà tapées dans le
+  formulaire, elles, ne survivent pas à un rechargement — c'est normal, mais il vaut mieux le savoir.</li>
+</ol>
+
+<p>Deux points techniques à mesurer ensuite, chiffres à l'appui avant d'accuser le thème : le poids de la vidéo
+d'accueil (une vidéo lourde pèse plus que tout le reste) et le nombre de scripts actifs. Le rapport
+<code>LLUFAN-conformite-et-vitesse.html</code> du kit donne la méthode.</p>
+
+<h2><span class="num">7.</span> Ordre d'exécution retenu</h2>
+
+<p>Votre audit proposait : fiabiliser la commande et les frais → stocks et contenus provisoires → français/arabe →
+mobile → démonstrations produit → acquisition mesurée. C'est l'ordre que je suis, et voici où nous en sommes :</p>
+
+<table>
+  <tr><th>Étape</th><th>État</th></tr>
+  <tr><td>Commande et frais fiables</td><td>Grille de démonstration complète (69 wilayas) ; barème réel à fournir <span class="etat vous">vous</span></td></tr>
+  <tr><td>Stocks et contenus provisoires</td><td>Textes prêts dans le kit ; stocks et photos à saisir <span class="etat vous">vous</span></td></tr>
+  <tr><td>Français / arabe</td><td>182 textes du thème + 10 pages traduits et livrés <span class="etat fait">fait</span></td></tr>
+  <tr><td>Mobile</td><td>Correctifs d'espacement en place ; contrôle téléphone à refaire après publication</td></tr>
+  <tr><td>Démonstrations produit</td><td>Contenus de fiche prêts (usage, entretien, colis, garnissage) ; photos et vidéo à fournir <span class="etat vous">vous</span></td></tr>
+  <tr><td>Acquisition mesurée</td><td>Attendre le tableau de suivi et les premiers coûts réels — pas de remise, pas de livraison gratuite avant</td></tr>
+</table>
+
+<h2><span class="num">8.</span> Deux rappels qui n'ont rien à voir avec le thème</h2>
+
+<div class="attention">
+  <p><strong>Vos deux jetons GitHub sont toujours valides</strong> (vérifié ce jour : HTTP 200) et n'ont pas été
+  révoqués. Comme ils ont circulé dans une conversation, le geste reste utile : en créer un neuf nommé
+  <em>llufan-envoi</em>, limité aux dépôts nécessaires, puis <strong>révoquer les anciens deux</strong> —
+  la marche à suivre est dans <code>JETON-GITHUB.txt</code>.</p>
+  <p><strong>Les textes arabes sont des propositions de démonstration.</strong> Ils sont lisibles et cohérents,
+  mais ils doivent être relus par un arabophone avant publication — en particulier les pages légales, la FAQ et les
+  noms de collections.</p>
+</div>
+
+<footer>
+  <p>LLUFAN — réponse au 2<sup>e</sup> audit, 6 octobre 2026. Les fichiers cités sont dans le paquet
+  <code>llufan.com.zip</code> (dossier <code>contenus/</code> pour le CSV, le classeur et les textes à coller,
+  <code>documents/</code> pour ce document). Le thème livré est <code>LLUFAN-theme-Shopify.zip</code>.</p>
+</footer>
+
+</div>
+</body>
+</html>

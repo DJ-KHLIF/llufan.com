@@ -75,7 +75,7 @@ def controle_1_liquid():
                 balise, contenu = m.group(1), m.group(2)
                 if '|' in contenu:
                     erreurs.append(
-                        "1. %s ligne %d : filtre (|) à l'intérieur de {% %s … %} — Shopify refuse. "
+                        "1. %s ligne %d : filtre (|) à l'intérieur de {%% %s … %%} — Shopify refuse. "
                         "Calculer la valeur avant, avec {%% assign %%}."
                         % (os.path.relpath(p, THEME), no, balise))
 

@@ -1,5 +1,9 @@
 {
   "_lisez_moi": "Empreintes des fichiers du thème qui ont déjà reculé. refaire_archives.sh refuse de construire une archive si l'un d'eux n'est plus identique : sans ce verrou, une reconstruction peut figer un recul dans l'archive et le publier.",
-  "_restaurer": "copier llufan/reference/theme.css sur llufan/theme/assets/theme.css",
-  "theme/assets/theme.css": "f2bede57e2532754249ecafab86826a9"
+  "_restaurer": "python3 verifier_empreintes.py --restaurer (copie llufan/reference/ sur le thème)",
+  "theme/assets/theme.css": "f60643ae47285dd35cc9a184de8fec99",
+  "theme/config/settings_data.json": "11bb6030410f132e78436574e6b6ffac",
+  "theme/config/settings_schema.json": "c1f0039d6987bb0dbaca8a4cb3c357b3",
+  "_surveilles": "Trois fichiers ont déjà reculé tout seuls : la feuille de style (cinq fois, 5 et 6 octobre 2026) et les deux fichiers de réglages du thème (une fois, le 6 octobre — le sélecteur de langue s'y était remis à « false », ce qui explique qu'il n'apparaissait pas sur la boutique).",
+  "_enregistrer": "python3 verifier_empreintes.py --enregistrer — UNIQUEMENT après un changement voulu, et après avoir regardé le détail du changement : ce geste adopte la version présente comme référence, il peut donc figer un recul."
 }
