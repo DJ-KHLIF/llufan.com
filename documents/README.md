@@ -1733,7 +1733,8 @@ relues par un arabophone avant la mise en ligne.
 
 ### 19.5 Le fichier de traduction s'étend à tout le site
 
-`LLUFAN-DEMO-traductions-ar.csv` passe de 94 à **249 lignes** :
+`LLUFAN-DEMO-traductions-ar.csv` — **292 lignes** au 6 octobre 2026 (voir §32.4
+pour les textes du thème, qui sont passés de 23 à 182 lignes) :
 
 | Type | Contenu | Lignes |
 |---|---|---|
@@ -1741,7 +1742,7 @@ relues par un arabophone avant la mise en ligne.
 | COLLECTION | 5 collections (titre + description) | 10 |
 | PAGE | les 7 pages d'information, la FAQ (8 questions), le Club Maman (4 espaces, 3 discussions), la page Contact | 138 |
 | BLOG / ARTICLE | le journal et ses 3 articles (titre, chapeau, texte) | 13 |
-| ONLINE_STORE_THEME | les 17 textes saisis dans les réglages de sections (Club Maman, formulaire de commande, pied de page, bandeau de démonstration) | 17 |
+| ONLINE_STORE_THEME | les réglages de sections (Club Maman, formulaire de commande, pied de page, bandeau) **et** les 169 textes écrits dans les gabarits du thème — accueil, fiche produit, FAQ, pages d'information, en-tête | 182 |
 
 Deux points de méthode, notés en tête du fichier :
 
@@ -2852,3 +2853,187 @@ une autorisation d'écriture, que cet espace de travail n'a pas — et la consig
 était de ne rien publier. La notice du paquet donne les cinq étapes (créer le
 dépôt, déposer le contenu, activer Pages sur `/docs`, brancher le domaine), à
 faire avec votre compte, en cinq minutes.
+
+## 32. Le 2ᵉ audit du 6 octobre — le sélecteur, l'arabe du thème, et le cinquième recul (2026-10-06)
+
+### 32.1 Le cinquième recul, et ce qu'il cachait au client
+
+`theme/assets/theme.css` a reculé une **cinquième fois** : le dossier de travail
+avait perdu le correctif d'« air » (le `calc(...)` qui garde 1360 px de contenu et
+les deux paliers `700 px` / `1000 px`). Cette fois, le recul avait **aussi** touché
+les deux fichiers de réglages :
+
+| Fichier | Ce qu'il avait perdu | Conséquence visible |
+|---|---|---|
+| `theme/assets/theme.css` | le correctif d'air (`calc` + paliers) | marges de page écrasées sur ordinateur |
+| `theme/config/settings_data.json` | `show_language_selector` remis à `false` | **aucune bascule de langue dans l'en-tête** |
+| `theme/config/settings_schema.json` | la valeur par défaut du même réglage | le sélecteur reste éteint même après réimport |
+
+**C'est très probablement la réponse à « je n'ai pas toujours la version arabe /
+français »** : le sélecteur est bien dans le code, mais un réglage éteint dans le
+dossier reculé suffisait à le rendre invisible. Les trois fichiers ont été remis à
+la version publiée, puis corrigés, puis adoptés comme nouvelle référence.
+
+### 32.2 Le verrou surveille trois fichiers, et sait adopter un changement voulu
+
+`verifier_empreintes.py` surveillait `theme.css` seul. Il surveille désormais les
+**trois** fichiers qui ont reculé, et il gagne une option :
+
+```bash
+python3 verifier_empreintes.py              # contrôle (0 = bon)
+python3 verifier_empreintes.py --restaurer  # remet la copie de référence
+python3 verifier_empreintes.py --enregistrer  # adopte la version PRÉSENTE
+```
+
+`--enregistrer` n'est pas un contournement : c'est le geste pour un changement
+**voulu** — il annonce à voix haute l'ancienne empreinte, la nouvelle et le poids
+avant/après, puis met `reference/` à jour. Il a servi une fois ce jour, après
+vérification que le `calc` et les deux paliers étaient bien revenus. **Leçon
+retenue** : ne jamais enregistrer une nouvelle référence sans avoir regardé le
+détail du changement (`diff` contre l'archive publiée).
+
+### 32.3 Le sélecteur de langue devient « Français | العربية »
+
+L'audit demandait les deux langues visibles, sans drapeaux. L'en-tête
+n'affichait auparavant que la langue vers laquelle on bascule.
+
+* `sections/header.liquid` : une pastille de texte, deux mots, un séparateur, la
+  langue en cours en **gras et non cliquable** (`aria-current`), l'autre
+  cliquable. Ordre français d'abord ; en arabe, `[dir="rtl"] .header__langue`
+  inverse la ligne pour que la langue en cours se lise en premier.
+* `assets/theme.css` : styles du nouveau bloc, y compris les réglages d'écran
+  étroit (320 px) et la règle RTL.
+* `build_preview.py` / `build_arabe.py` : l'aperçu HTML autonome reprend
+  exactement la même pastille, et la bascule pointe vers la jumelle de la page
+  courante (`produit-...` → `ar-produit-...`) et non vers l'accueil.
+* Le sélecteur n'apparaît que si **l'arabe est publié dans Shopify**
+  (Paramètres → Langues → Publier). C'est un réglage de la boutique, pas du thème.
+
+### 32.4 Les textes du thème en arabe : 23 lignes → 182
+
+Constat de l'audit, exact : les textes saisis **dans** les gabarits n'avaient pas
+d'arabe. Ce que l'on voyait en version arabe restait donc en français : titres et
+boutons de l'accueil, réassurance, blocs de la fiche produit, FAQ, en-tête, pied
+de page, pages d'information.
+
+* `theme_textes_ar.py` — nouveau fichier : **197 entrées** (texte français exact →
+  texte arabe). Les mentions de démonstration y sont conservées en arabe
+  (« نص تجريبي »), et aucune traduction ne promet de soulagement ni d'effet sur
+  la santé.
+* `generer_kit_shopify.py` — parcourt désormais `templates/*.json` et
+  `sections/*-group.json`, écarte ce qui ne s'affiche pas (couleurs, icônes,
+  liens, noms de menus) et écrit une ligne `ONLINE_STORE_THEME` par texte.
+  **Si un texte n'a pas sa traduction, la génération s'arrête et le nomme** :
+  aucun trou silencieux.
+* Les lignes de réglages citent le **texte réellement affiché**
+  (`valeurs_vivantes()`) et non la valeur par défaut du schéma : un gabarit peut
+  remplacer un réglage (« Commander — Paiement à la livraison » devient
+  « Paiement à la livraison » sur la fiche produit), et citer l'ancienne valeur
+  ferait chercher la cliente pour rien dans « Contenu du thème ».
+* `dedoublonner()` : un même texte du thème n'apparaît qu'une fois (c'est le même
+  champ chez Shopify), mais les lignes produits, collections, pages et articles
+  ne sont pas touchées — deux fiches peuvent porter le même libellé.
+
+`LLUFAN-DEMO-traductions-ar.csv` passe ainsi à **292 lignes** (182 de thème, 30 de
+produits, 27 de valeurs d'options, 19 de pages, 10 de collections, 10 d'articles,
+12 d'options, 1 de blog, 1 rappel).
+
+### 32.5 Textes alternatifs : 12 images muettes, plus aucune
+
+L'audit en relevait 5 ; le contrôle complet en a trouvé **12** :
+
+| Fichier | Images |
+|---|---|
+| `sections/media-with-text.liquid` | 3 réglages + 2 visuels de démonstration |
+| `snippets/product-card.liquid` | image principale, seconde vue |
+| `sections/hero.liquid` | 2 visuels de diapositive |
+| `sections/featured-collections.liquid` | 1 |
+| `sections/main-list-collections.liquid` | 1 |
+| `sections/collection-banner.liquid` | 1 |
+
+Règle appliquée partout : description écrite dans Shopify si elle existe, sinon
+titre du produit + couleur de la variante (« Coussin Nomad — Bleu »), sinon le
+titre seul. Vérification : plus aucune balise `image_tag` sans `alt:` et plus
+aucun `alt=""` dans le thème.
+
+### 32.6 Une commande LLUFAN n'est pas une commande Shopify
+
+Le volet 8 de l'audit (528 sessions, 4 ajouts au panier, 5 checkouts, **0 commande,
+0 DZD**) se lit comme une panne de paiement. Ce n'en est pas une : la commande
+passe par `snippets/forme-commande.liquid` (`{% form 'contact' %}`), donc elle
+arrive en **message** (Formulaires de contact / l'e-mail de la boutique), pas en
+commande Shopify. Le tableau de bord affichera donc toujours 0. D'où le classeur
+`LLUFAN-suivi-commandes-COD.xlsx` (`creer_suivi_commandes.py`) : registre des
+commandes, statuts reçue → confirmée → expédiée → livrée / refusée / encaissée,
+frais réels, coût des articles, et net encaissé calculé — c'est lui qui dit si la
+publicité est rentable.
+
+### 32.7 Deux défauts d'outillage, réparés
+
+* `audit_erreurs_shopify.py` plantait (`ValueError: unsupported format character`)
+  au lieu d'afficher l'erreur qu'il venait de trouver : un `%` non doublé dans le
+  message. Un contrôle qui plante est un contrôle qui se tait — réparé, et il a
+  immédiatement révélé le défaut suivant.
+* `sections/header.liquid` contenait un filtre `| append:` dans une balise
+  `{% form %}` — montage que Shopify refuse. L'identifiant se calcule maintenant
+  avant la balise.
+
+### 32.8 Contrôles, tous verts
+
+```
+verifier_avant_envoi.sh      5/5 (après reconstruction de l'archive)
+verifier_empreintes.py       3 fichiers surveillés intacts
+verifier_theme_zip.py        dossier = archive (104 fichiers)
+audit_erreurs_shopify.py     4 contrôles, aucune erreur
+audit_contenu_fr_ar.py       FR ↔ AR conformes
+audit_conformite_shopify.py  19 points conformes, 0 avertissement
+refaire_apercu.sh            82 pages, 0 lien mort
+```
+
+### 32.9 Trois décisions en attente
+
+1. **Les polices arabes** : le thème embarque IBM Plex Sans Arabic + Noto Naskh
+   Arabic (déjà en place, aucun appel à Google) ; l'audit cite Tajawal et DM Sans.
+   Trancher avant de toucher aux fichiers de police.
+2. **Le tarif de livraison réel** : le barème des 69 wilayas est de démonstration ;
+   il attend la grille du transporteur.
+3. **Téléphone et e-mail** de la page de confidentialité : le kit fournit les
+   phrases, pas les coordonnées.
+
+
+### 32.10 Le correctif venu de la boutique — et pourquoi il fallait le rapatrier
+
+Avant d'envoyer, un contrôle des dépôts a montré que **Shopify pousse ses propres
+commits** dans `DJ-KHLIF/llufan-boutique` (« Update from Shopify for theme
+llufan-boutique/main »), depuis que le thème y est relié. Trois commits :
+
+| Commit | Date | Ce qu'il a touché |
+|---|---|---|
+| `de086c5` | 5 oct. 16:25 | `config/settings_schema.json` (restauré depuis, par un envoi du 6 oct.) |
+| `9d2a1a8` | 6 oct. 10:17 | `locales/ar.json` — le compteur de filtres, simplifié à la main |
+| `84f5b45` | 6 oct. 10:58 | `assets/theme.css` — **le correctif du diaporama** |
+
+Ce dernier est un vrai correctif : le texte des diapositives débordait sur
+téléphone. Shopify l'avait écrit directement dans la feuille de style du thème
+en ligne. **Mon fichier ne l'avait pas** : envoyer le zip tel quel aurait effacé
+ce correctif de la boutique. Deux gestes ont donc été faits avant l'envoi :
+
+1. le bloc `.slideshow__slide-content` de la boutique (avec son `max-width`,
+   son `padding-inline: max(20px, …)` et sa règle mobile qui réduit le titre)
+   a été **fusionné dans le fichier du projet** — c'est désormais lui la
+   référence, et l'archive comme le paquet le portent ;
+2. le texte arabe du compteur de filtres que vous avez saisi
+   (`"{{ count }} من الفلاتر"`) a été **conservé**, à la place de mes formes
+   plurielles : c'est votre texte, il reste.
+
+**Nouvelle règle pour la suite** : avant tout envoi vers `llufan-boutique`,
+`git pull --rebase` d'abord — Shopify a pu pousser entre-temps. Et le contrôle
+des trois dépôts fait maintenant partie de la vérification d'avant-envoi.
+
+### 32.11 Le 6ᵉ recul, attrapé par le verrou
+
+Au tout début de l'envoi, `verifier_avant_envoi.sh` a signalé que
+`theme/assets/theme.css` avait reculé **une sixième fois** — et l'a restauré
+depuis `reference/` sans bloquer, en affichant « ⚠ À NOTER ». Le contrôle a donc
+fait son travail : l'archive envoyée contient bien le `calc` de l'air, les deux
+paliers d'écran, le sélecteur à deux mots **et** le correctif du diaporama.
